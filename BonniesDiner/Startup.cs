@@ -1,8 +1,10 @@
+using BonniesDiner.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,14 +29,20 @@ namespace BonniesDiner
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddDbContext<DinerContext>(
+                x =>
+                {
+                    x.UseSqlServer(Configuration.GetConnectionString("localDb"));
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DinerContext db)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                db.Database.Migrate();
             }
             else
             {
