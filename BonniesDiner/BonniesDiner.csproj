@@ -21,6 +21,36 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientApp\src\common\components\button.jsx" />
+    <None Remove="ClientApp\src\common\components\checkbox.jsx" />
+    <None Remove="ClientApp\src\common\components\dropDownList.jsx" />
+    <None Remove="ClientApp\src\common\components\index.jsx" />
+    <None Remove="ClientApp\src\common\components\modal.jsx" />
+    <None Remove="ClientApp\src\common\components\password.jsx" />
+    <None Remove="ClientApp\src\common\components\radio.jsx" />
+    <None Remove="ClientApp\src\common\components\tabs.jsx" />
+    <None Remove="ClientApp\src\common\components\validation.jsx" />
+    <None Remove="ClientApp\src\components\Users\RegisterContainer.jsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\Components\Staff\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\common\components\button.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\common\components\dropDownList.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\common\components\radio.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\common\components\tabs.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\common\components\checkbox.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\common\components\modal.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\common\components\password.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\common\components\validation.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\common\components\index.jsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Users\RegisterContainer.jsx" />
+  </ItemGroup>
+
  <PropertyGroup>
     <RuntimeFrameworkVersion>2.1.1</RuntimeFrameworkVersion>
   </PropertyGroup>
