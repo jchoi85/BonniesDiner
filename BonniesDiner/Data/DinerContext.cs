@@ -48,21 +48,21 @@ namespace BonniesDiner.Data
                 .HasColumnType("money")
                 .IsRequired();
 
-            //var order = modelBuilder.Entity<OrderEntity>();
-            //order
-            //    .HasKey(x => x.Id);
-            //order
-            //    .Property(x => x.StatusNew)
-            //    .HasColumnType("datetime2(7)")
-            //    .IsRequired();
-            //order
-            //    .Property(x => x.StatusCancelled)
-            //    .HasColumnType("datetime2(7)")
-            //    .IsRequired();
-            //order
-            //    .Property(x => x.StatusFulfilled)
-            //    .HasColumnType("datetime2(7)")
-            //    .IsRequired();
+            var order = modelBuilder.Entity<OrderEntity>();
+            order
+                .HasKey(x => x.Id);
+            order
+                .Property(x => x.StatusNew)
+                .HasColumnType("datetime2(7)")
+                .IsRequired();
+            order
+                .Property(x => x.StatusCancelled)
+                .HasColumnType("datetime2(7)")
+                .IsRequired();
+            order
+                .Property(x => x.StatusFulfilled)
+                .HasColumnType("datetime2(7)")
+                .IsRequired();
 
             var orderLine = modelBuilder.Entity<OrderLineItemEntity>();
             orderLine
@@ -76,6 +76,6 @@ namespace BonniesDiner.Data
         public DbSet<UserEntity> User { get; set; }
         public DbSet<MenuEntity> Menu { get; set; }
         public DbSet<OrderLineItemEntity> OrderLineItem { get; set; }
-        //public DbSet<OrderEntity> Order { get; set; }
+        public DbSet<OrderEntity> Order { get; set; }
     }
 }
