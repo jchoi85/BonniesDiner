@@ -10,7 +10,8 @@ export class Layout extends React.Component{
                     <header className="an-header">
                         <nav className="navbar navbar-default navbar-fixed-top" style={{
                             background: "#2c353a",
-                            borderBottom: "1px solid #161b1d"
+                            borderBottom: "1px solid #161b1d",
+                            width: "200px"
                         }}>
                             <div className="container">
                                 <div className="navbar-header">
@@ -20,10 +21,10 @@ export class Layout extends React.Component{
                                         <span className="icon-bar"></span>
                                         <span className="icon-bar"></span>
                                     </button>
-                                    <a className="navbar-brand" href="/">Hobbyist</a>
+                                    <a className="navbar-brand" href="/">Bonnie's Diner</a>
                                 </div>
-                                <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                    <ul className="nav navbar-nav">
+                                <div>
+                                    <ul style={{ color: "white" }}>
                                         <li className="active"><a href="#home"><i className="ion-home"></i>Home</a></li>
                                         <li className="active"><a href="/blogs"><i className="ion-document-text"></i>Blog</a></li>
                                         <li className="active"><a href="#contact"><i></i>Login</a></li>
