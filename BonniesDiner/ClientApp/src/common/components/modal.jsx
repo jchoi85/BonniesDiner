@@ -1,7 +1,12 @@
 ﻿import * as React from "react";
 
-export class ModalWindow {
+export class ModalWindow extends React.Component {
     constructor(props) {
+        super(props)
+        this.state = {
+            
+        }
+
     }
 
     componentDidMount() {
@@ -38,8 +43,8 @@ export class ModalWindow {
                 <div style={modalStyle}>
                     {this.props.children}
                     <div className="footer" style={{ textAlign: 'center' }}>
-                        <button className="an-btn an-btn-prospect" onClick={this.props.onClose}>
-                            Close
+                        <button className="btn btn-sm btn-danger" onClick={this.props.onClose}>
+                            Edit
                         </button>
                     </div>
                 </div >

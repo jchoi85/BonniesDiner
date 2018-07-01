@@ -53,7 +53,7 @@ export class LoginContainer extends React.Component{
             body: JSON.stringify(payload)
         })
             .then(
-                browserHistory.push("login")
+                browserHistory.push("menuPage")
             )
             .catch((error) => {
                 console.log("error");

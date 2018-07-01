@@ -58,6 +58,10 @@ namespace BonniesDiner.Data
             order
                 .HasKey(x => x.Id);
             order
+                .Property(x => x.OrderTotal)
+                .HasColumnType("decimal")
+                .IsRequired();
+            order
                 .Property(x => x.StatusNew)
                 .HasColumnType("datetime2(7)")
                 .IsRequired();
