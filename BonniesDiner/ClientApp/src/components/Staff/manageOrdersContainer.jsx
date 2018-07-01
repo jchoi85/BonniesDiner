@@ -26,12 +26,17 @@ export class ManageOrdersContainer extends React.Component {
     }
 
     getOpenOrders() {
-        fetch('/api/manageorders')
+        fetch('/api/orders/getAllorders')
             .then(response => {
                 if (response.ok) {
+                    // response.json().then(json => {
                     console.log(response)
+                    //  });
+                    //this.setState({
+                    //    appetizerArray: appetizerArray, entreeArray: entreeArray, dessertArray: dessertArray
+                    //}, () => console.log(json));
+                    //});
                 }
-
             })
             .catch(function (error) {
                 console.log("error");
