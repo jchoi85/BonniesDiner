@@ -1,24 +1,27 @@
 ﻿import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { actionCreators } from '../store/Counter';
 
-class MenuPage extends React.Component {
+
+import { Button } from "../../common/components";
+
+export class MenuPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [
-                { "Id": "1", "ItemName": "Bbq Drumsticks"}
-            ]
+            
         }
-           
     }
 
     getAllItems() {
-        data: [
-            { "Id": "1", "ItemName": "Bbq Drumsticks" }
-        ]
+        fetch('/api/menu/getmenuitems')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
+            });
     }
+
+   
 
     render() {
         return (
@@ -67,7 +70,3 @@ class MenuPage extends React.Component {
     }
 };
 
-//export default connect(
-//    state => state.MenuPage,
-//    dispatch => bindActionCreators(actionCreators, dispatch)
-//)(MenuPage);
