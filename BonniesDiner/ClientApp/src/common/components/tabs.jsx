@@ -1,8 +1,9 @@
 ﻿import * as React from "react";
 
-export class Tabs{
+export class Tabs extends React.Component{
 
     constructor(props) {
+        super(props);
         this.state = {
             activeTabIndex: this.props.defaultActiveTabIndex
         };
