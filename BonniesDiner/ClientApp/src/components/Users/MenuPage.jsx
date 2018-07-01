@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { Button, ModalWindow, Input } from "../../common/components";
+import { Button, ModalWindow, Input, EmbeddedInput } from "../../common/components";
 
 
 export class MenuPage extends React.Component {
@@ -14,10 +14,15 @@ export class MenuPage extends React.Component {
                 MenuItems: "",
                 MenuId: 0,
                 Quantity: 0
-            }
+            },
+            appsOrdered: [],
+            entreesOrdered: [],
+            dessertsOrdered: []
+
         }
         this.modalToggle = this.modalToggle.bind(this);
         this.onFieldChange = this.onFieldChange.bind(this);
+        this.getAllItems = this.getAllItems.bind(this);
     }
 
     componentDidMount() {
@@ -37,9 +42,21 @@ export class MenuPage extends React.Component {
         this.setState(nextState);
     }
 
+    //onEmbdFieldChange(fieldName, fieldValue, index, category) {
+    //    console.log(fieldName, fieldValue, index, category)
+    //    //const nextState = {
+    //    //    ...this.state,
+    //    //    menuEntity: {
+    //    //        ...this.state.menuEntity,
+    //    //        MenuItems: fieldName,
+    //    //        Quantity: fieldValue
+    //    //    }
+    //    //}
+    //    //this.setState(nextState);
+    //}
 
-    getAllItems() {
 
+    getAllItems = () => {
         fetch('/api/menu/getmenuitems')
             .then(response => {
                 if (response.ok) {
@@ -47,16 +64,22 @@ export class MenuPage extends React.Component {
                         let appetizerArray = [];
                         let entreeArray = [];
                         let dessertArray = [];
+                        let appsOrdered = [];
+                        let entreesOrdered = [];
+                        let dessertsOrdered = [];
                         json.forEach(item => {
                             switch (item.category) {
                                 case "Appetizers":
                                     appetizerArray.push(item);
+                                    appsOrdered.push(0);
                                     break;
                                 case "Entrees":
                                     entreeArray.push(item);
+                                    entreesOrdered.push(0);
                                     break;
                                 case "Dessert":
                                     dessertArray.push(item);
+                                    dessertsOrdered.push(0);
                                     break;
                             }
                         });
@@ -78,16 +101,9 @@ export class MenuPage extends React.Component {
     }
 
     successModal() {
-        let appsOrdered = [];
-        let entreesOrdered = [];
-        let dessertsOrdered = [];
-        for (let i = 0; i < this.state.appetizerArray.length; i++) {
-            if (this.state.menuEntity.MenuItems == this.state.appetizerArray[i].itemName) {
-                appsOrdered.push(this.state.appetizerArray[i].itemName);
-                appsOrdered.push(this.state.menuEntity.Quantity);
-            }
-        }
-        console.log(appsOrdered)
+       // let itemsOrdered = [];
+    
+       // console.log(itemsOrdered)
         //for (let i = 0; i < this.state.entreeArray.length; i++) {
         //    entreesOrdered.push(this.state.entreeArray[i].itemName);
         //}
@@ -95,29 +111,20 @@ export class MenuPage extends React.Component {
         //    dessertsOrdered.push(this.state.dessertArray[i].itemName);
         //}
         return (
-            <div>
-                <h2 style={{ textAlign: "center" }}>Please confirm your order</h2>
-                <br />
-                <div style={{ float: "right" }}>
-                    <ol>
-                        {appsOrdered.map((itm, id) => {
-                            return (<li key={id}>{itm}x{itm.Quantity}</li>)
-                        })}
-                        
-                        </ol>
-                    <br />
-                    <strong>{entreesOrdered.join(", ")}</strong>
-                    <br />
-                    <strong>{dessertsOrdered.join(", ")}</strong>
-                    <br />
-                    <span style={{ paddingLeft: "10px" }}></span>
-                    <Button
-                        className="btn btn-sm btn-success"
-                        onClick={this.getAllItems}
-                        label="Submit"
-                        disabled={false} />
-                </div>
-            </div>
+            <div></div>
+            //    <h2 style={{ textAlign: "center" }}>Please confirm your order</h2>
+            //    <br />
+            //    <div style={{ float: "right" }}>
+            //       
+            //        <br />
+            //        <span style={{ paddingLeft: "10px" }}></span>
+            //        <Button
+            //            className="btn btn-sm btn-success"
+            //            onClick={this.getAllItems}
+            //            label="Submit"
+            //            disabled={false} />
+            //    </div>
+            //</div>
         );
     }
 
@@ -129,9 +136,9 @@ export class MenuPage extends React.Component {
                     <div className="col-md-12 col-md-offset-2">
                         <div>
                             <h6 style={{ textAlign: "center" }}><strong>Appetizers<span className="pull-right">Quantity</span></strong></h6>
-                            {this.state.appetizerArray.map((itm, app) => {
+                            {this.state.appetizerArray.map((itm, index) => {
                                 return (
-                                    <div key={app} className="row" style={{ paddingBottom: "30px" }}>
+                                    <div key={index} className="row" style={{ paddingBottom: "30px" }}>
                                         <div className="col-md-10">
                                             <strong>{itm.itemName}</strong> <br />
 
@@ -139,10 +146,11 @@ export class MenuPage extends React.Component {
                                         </div>
                                         <div className="col-md-2 pull-right">
                                             <Input label=""
-                                                type="number"
+                                                type="text"
                                                 name={itm.itemName}
                                                 onChange={this.onFieldChange}
                                                 placeholder=""
+                                                fieldValue={itm.Quantity}
                                             />
                                         </div>
                                         <hr/>
