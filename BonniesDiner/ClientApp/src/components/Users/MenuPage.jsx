@@ -92,21 +92,23 @@ export class MenuPage extends React.Component {
                 )
                 .catch((error) => {
                     this.errorToggle(),
-                    console.log(error)
+                        console.log(error)
                 });
         }
     }
 
     modalToggle() {
-        this.setState({ successModal: !this.state.successModal }, () => {
-            let itemsOrdered = this.state.itemsOrdered;
-            for (var item in itemsOrdered) {
-                itemsOrdered[item] = 0;
-            }
-            this.setState({
-                itemsOrdered
-            })
-        });
+        if (this.state.errorModal == false) {
+            this.setState({ successModal: !this.state.successModal }, () => {
+                let itemsOrdered = this.state.itemsOrdered;
+                for (var item in itemsOrdered) {
+                    itemsOrdered[item] = 0;
+                }
+                this.setState({
+                    itemsOrdered
+                })
+            });
+        }
     }
 
     errorToggle() {
@@ -116,22 +118,6 @@ export class MenuPage extends React.Component {
     }
 
     successModal() {
-        let appsOrdered = [];
-        let entreesOrdered = [];
-        let dessertsOrdered = [];
-        for (let i = 0; i < this.state.appetizerArray.length; i++) {
-            if (this.state.menuEntity.MenuItems === this.state.appetizerArray[i].itemName) {
-                appsOrdered.push(this.state.appetizerArray[i].itemName);
-                appsOrdered.push(this.state.menuEntity.Quantity);
-            }
-        }
-        console.log(appsOrdered)
-        //for (let i = 0; i < this.state.entreeArray.length; i++) {
-        //    entreesOrdered.push(this.state.entreeArray[i].itemName);
-        //}
-        //for (let i = 0; i < this.state.dessertArray.length; i++) {
-        //    dessertsOrdered.push(this.state.dessertArray[i].itemName);
-        //}
         return (
             <div>
                 <h2 style={{ textAlign: "center" }}>Thank you!</h2>
@@ -240,7 +226,7 @@ export class MenuPage extends React.Component {
                                             onClick={() => this.addItem(itm.id)}
                                             label="Add"
                                             disabled={false} />
-                                        <span style={{paddingLeft: "10px"}}></span>
+                                        <span style={{ paddingLeft: "10px" }}></span>
                                         <Button
                                             className="btn btn-sm btn-danger"
                                             onClick={() => this.removeItem(itm.id)}
