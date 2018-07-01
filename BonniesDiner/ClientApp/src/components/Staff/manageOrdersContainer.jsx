@@ -29,8 +29,11 @@ export class ManageOrdersContainer extends React.Component {
     }
     
     cancelOrder(id) {
-        this.Auth.fetch('/api/order/cancelorder/' + (id)), () => this.getOpenOrders();
-     
+        this.Auth.fetch('/api/order/cancelorder/' + (id))
+            .then(response => {
+                this.getOpenOrders();
+
+            });
     }
 
     
