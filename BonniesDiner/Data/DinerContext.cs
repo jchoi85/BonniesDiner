@@ -1,4 +1,5 @@
-﻿using BonniesDiner.Domain.Entity;
+﻿using System.Reflection;
+using BonniesDiner.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BonniesDiner.Data

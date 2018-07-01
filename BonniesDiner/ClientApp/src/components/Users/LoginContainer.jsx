@@ -40,9 +40,24 @@ export class LoginContainer extends React.Component{
             event.preventDefault();
         }
     }
-     onSave() {
-        //console.log(this.state);
-     }
+    onSave() {
+        console.log(this.state.loginEntity)
+        let payload = this.state.loginEntity;
+
+        fetch('/api/user/login', {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(payload)
+        })
+            .then(
+                browserHistory.push("login")
+            )
+            .catch((error) => {
+                console.log("error");
+            });
+    };
     
      render() {
          return (
