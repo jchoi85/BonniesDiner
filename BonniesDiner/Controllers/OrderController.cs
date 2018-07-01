@@ -29,12 +29,40 @@ namespace BonniesDiner.Controllers
         [HttpGet("[action]")]
         public IEnumerable<OrderEntity> GetOpenOrders()
         {
-            return _dinerContext.Order.Where(x => x.StatusFulfilled == null && x.StatusCancelled == null).ToList();
+            var orders = _dinerContext.Order.Where(x => x.StatusFulfilled == null && x.StatusCancelled == null).ToList();
+
+            foreach (OrderEntity order in orders)
+            {
+                List<OrderLineItemEntity> lineItems =
+                    _dinerContext.OrderLineItem.Where(x => x.OrderEntityId == order.Id).ToList();
+                foreach (OrderLineItemEntity lineItem in order.LineItems)
+                {
+                    lineItem.Item = _dinerContext.Menu.FirstOrDefault(x => x.Id == lineItem.ItemId);
+                }
+
+                order.LineItems = lineItems;
+            }
+
+            return orders;
         }
         [HttpGet("[action]")]
         public IEnumerable<OrderEntity> GetAllOrders()
         {
-            return _dinerContext.Order.ToList();
+            var orders = _dinerContext.Order.ToList();
+
+            foreach (OrderEntity order in orders)
+            {
+                List<OrderLineItemEntity> lineItems =
+                    _dinerContext.OrderLineItem.Where(x => x.OrderEntityId == order.Id).ToList();
+                foreach (OrderLineItemEntity lineItem in order.LineItems)
+                {
+                    lineItem.Item = _dinerContext.Menu.FirstOrDefault(x => x.Id == lineItem.ItemId);
+                }
+
+                order.LineItems = lineItems;
+            }
+
+            return orders;
         }
         [HttpGet("[action]/{orderId}")]
         public bool FulfillOrder(int orderId)
@@ -49,20 +77,8 @@ namespace BonniesDiner.Controllers
             EmailMessage email = new EmailMessage();
             email.ToAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
             email.Subject = "TEST";
-            email.FromAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
+            email.FromAddresses.Add(new EmailAddress { Address = "bonniesdinerexsilio@gmail.com", Name = "Bonnies Diner" });
             
-            _emailService.Send(email);
-            return true;
-        }
-        [HttpGet("[action]")]
-        public bool Test()
-        {
-            EmailMessage email = new EmailMessage();
-            email.ToAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
-            email.Subject = "Order From Bonnie's Diner";
-            email.Content = "Thank you for your Purchase! Items will be ready in 15 minutes.";
-            email.FromAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
-
             _emailService.Send(email);
             return true;
         }
