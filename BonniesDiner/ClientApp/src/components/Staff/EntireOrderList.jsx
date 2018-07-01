@@ -29,7 +29,7 @@ const buildRow = (props) => (itm, ndx) => {
     return (
         
             <tr key={ndx}>
-                <td className="col-md-2"><strong>{itm.orderId}</strong></td>
+                <td className="col-md-2"><strong>{itm.id}</strong></td>
                 <td className="col-md-3">{itm.statusNew}</td>
                 <td className="col-md-3">{itm.statusFulfilled}</td>
                 <td className="col-md-3">{itm.statusCancelled}</td>

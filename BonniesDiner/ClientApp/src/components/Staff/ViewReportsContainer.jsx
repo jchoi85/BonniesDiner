@@ -2,16 +2,14 @@
 import { EntireOrderList } from "./EntireOrderList";
 import { PopularityItemList } from "./PopularityItemList";
 import { IndividualItemList } from "./IndividualItemList";
-//import { authService } from "../../services/authService";
+import AuthService from "../../services/authService";
 
 
 export class ViewReportsContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            entireOrders: [{ orderId: 1, statusNew: '1/1/2018 9:45', statusFulfilled: '1/1/2018 10:45', statusCancelled: '' },
-            { orderId: 2, statusNew: '1/4/2018 10:45', statusFulfilled: '1/4/2018 11:30', statusCancelled: '' },
-            { orderId: 3, statusNew: '1/19/2018 06:45', statusFulfilled: '', statusCancelled: '1/19/2018 07:48' }]
+            entireOrders: []
             ,
             individualItems: [{ orderId: 1, itemId: 2, itemQty: 1, statusNew: '1/1/2018 9:45', statusFulfilled: '1/1/2018 10:45', statusCancelled: '' },
             { orderId: 4, itemId: 2, itemQty: 3, statusNew: '1/4/2018 9:45', statusFulfilled: '1/4/2018 9:54', statusCancelled: '' },
@@ -28,63 +26,35 @@ export class ViewReportsContainer extends React.Component {
                 Quantity: 0
             }
         }
-        //this.Auth = new authService();
+        this.Auth = new AuthService();
 
         }
 
         componentDidMount() {
-            this.getAllItems();
-            //this.getOpenOrders();
+            this.getAllOrders();
         };
 
-
-        getAllItems() {
-
-            fetch('/api/menu/getmenuitems')
-                .then(response => {
-                    if (response.ok) {
-                        response.json().then(json => {
-                            let appetizerArray = [];
-                            let entreeArray = [];
-                            let dessertArray = [];
-                            json.forEach(item => {
-                                switch (item.category) {
-                                    case "Appetizers":
-                                        appetizerArray.push(item);
-                                        break;
-                                    case "Entrees":
-                                        entreeArray.push(item);
-                                        break;
-                                    case "Dessert":
-                                        dessertArray.push(item);
-                                        break;
-                                }
-                            });
-                            this.setState({
-                                appetizerArray: appetizerArray, entreeArray: entreeArray, dessertArray: dessertArray
-                            }, () => console.log(json));
-                        });
-                    }
-                })
-                .catch(function (error) {
-                    console.log("error");
-                });
-        };
     
-    //getOpenOrders() {
+    //getOpenOrders = () => {
     //    this.Auth.fetch('/api/order/GetOpenOrders')
     //        .then(response => {
-    //            if (response.ok) {
-    //                response.json().then(json => {
-    //                    console.log(json);
-    //                })
-
-    //            }
+    //            console.log(response);
     //        })
     //        .catch(function (error) {
     //            console.log("error");
     //        });
     //}
+
+    getAllOrders = () => {
+        this.Auth.fetch('/api/order/GetAllOrders')
+            .then(response => {
+                console.log(response);
+                this.setState({entireOrders: response})
+            })
+            .catch(function (error) {
+                console.log("error");
+            });
+    }
 
 
         render() {
