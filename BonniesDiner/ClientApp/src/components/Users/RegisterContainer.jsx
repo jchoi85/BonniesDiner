@@ -46,7 +46,6 @@ export class RegisterContainer extends React.Component{
     };
    
     onSave() {
-        //console.log(this.state.registerEntity)
         let payload = this.state.registerEntity;
 
         fetch('/api/user/register', {

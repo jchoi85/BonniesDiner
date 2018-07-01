@@ -1,15 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BonniesDiner.Data;
 using BonniesDiner.Domain.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BonniesDiner.Controllers
 {
@@ -48,11 +53,13 @@ namespace BonniesDiner.Controllers
             _dinerContext.SaveChanges();
         }
         [HttpPost("[action]")]
-        public bool Login([FromBody]LoginEntity login)
+        public IActionResult Login([FromBody]LoginEntity login)
         {
             UserEntity user = _dinerContext.User.FirstOrDefault(x => x.Email == login.Email);
 
-            if (user == null) return false;
+            var usernameeee = User.Identity.Name;
+
+            if (user == null) return BadRequest();
 
             // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
@@ -64,44 +71,32 @@ namespace BonniesDiner.Controllers
 
             if (hashed == user.PasswordHash)
             {
-                Set("key", "value", 36000);
-                return true;
+                var claims = new[]
+                {
+                    new Claim(ClaimTypes.Name, login.Email),
+                    new Claim("IsAdmin", user.IsAdmin.ToString())
+                };
+
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secretkeysecretkeysecretkeysecretkey"));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                var token = new JwtSecurityToken(
+                    issuer: "localhost",
+                    audience: "localhost",
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(30),
+                    signingCredentials: creds);
+
+                var returnToken = new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                };
+
+                return Json(returnToken);
+
             }
 
-            return false;
+            return BadRequest();
         }
-        /// <summary>  
-        /// Get the cookie  
-        /// </summary>  
-        /// <param name="key">Key </param>  
-        /// <returns>string value</returns>  
-        public string Get(string key)
-        {
-            return Request.Cookies["Key"];
-        }
-        /// <summary>  
-        /// set the cookie  
-        /// </summary>  
-        /// <param name="key">key (unique indentifier)</param>  
-        /// <param name="value">value to store in cookie object</param>  
-        /// <param name="expireTime">expiration time</param>  
-        public void Set(string key, string value, int? expireTime)
-        {
-            CookieOptions option = new CookieOptions();
-            if (expireTime.HasValue)
-                option.Expires = DateTime.Now.AddMinutes(expireTime.Value);
-            else
-                option.Expires = DateTime.Now.AddMilliseconds(10);
-            Response.Cookies.Append(key, value, option);
-        }
-        /// <summary>  
-        /// Delete the key  
-        /// </summary>  
-        /// <param name="key">Key</param>  
-        public void Remove(string key)
-        {
-            Response.Cookies.Delete(key);
-        }
-
     }
 }

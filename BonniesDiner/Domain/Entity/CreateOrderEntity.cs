@@ -7,7 +7,6 @@ namespace BonniesDiner.Domain.Entity
 {
     public class CreateOrderEntity
     {
-        public int UserId { get; set; }
         public List<CreateOrderMenuItem> MenuItems { get; set; }
     }
 
