@@ -23,7 +23,7 @@ namespace BonniesDiner.Controllers
         [HttpGet("[action]")]
         public IEnumerable<OrderEntity> GetOpenOrders()
         {
-            return _dinerContext.Order.ToArray();
+            return _dinerContext.Order.Where(x => x.StatusFulfilled == null && x.StatusCancelled == null).ToList();
         }
         [HttpGet("[action]")]
         public IEnumerable<OrderEntity> GetAllOrders()
