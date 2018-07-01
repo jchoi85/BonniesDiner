@@ -36,10 +36,10 @@ export class RegisterContainer extends React.Component{
         this.setState(nextState);
     };
 
-	onCheck(name, checked) {
-        this.setState({
-            registerEntity: {
-				...this.state.registerEntity,
+     onCheck(name, checked) {
+         this.setState({
+             registerEntity: {
+                 ...this.state.registerEntity,
                 [name]: checked
             }
         })
@@ -65,12 +65,16 @@ export class RegisterContainer extends React.Component{
 
      render() {
          return (
+             <div>
+             <h3 style={{ textAlign: "center", color: "white" }}>Register Now</h3>
+             <br />
                 <RegisterForm
                      onChange={this.onFieldChange}
                      onSave={this.onSave}
                      registerEntity={this.state.registerEntity}
                      onCheck={this.onCheck}
-                />
+                 />
+             </div>
         );
     }
 }

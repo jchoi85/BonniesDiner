@@ -67,12 +67,10 @@ namespace BonniesDiner.Data
                 .IsRequired();
             order
                 .Property(x => x.StatusCancelled)
-                .HasColumnType("datetime2(7)")
-                .IsRequired();
+                .HasColumnType("datetime2(7)");
             order
                 .Property(x => x.StatusFulfilled)
-                .HasColumnType("datetime2(7)")
-                .IsRequired();
+                .HasColumnType("datetime2(7)");
 
             var orderLine = modelBuilder.Entity<OrderLineItemEntity>();
             orderLine
