@@ -111,7 +111,7 @@ export class MenuPage extends React.Component {
                                     <div>
                                         <strong>{itm.itemName}</strong> <br />
                                         
-                                    {itm.description} {itm.price}
+                                        {itm.description} <strong>{itm.price}</strong>
                                     </div>
                                     <Input label=""
                                         type="number"
@@ -131,8 +131,9 @@ export class MenuPage extends React.Component {
                             return (
                                 <div key={entree}>
                                     <strong>{itm.itemName}</strong>
-                                  <br />
-                                    {itm.description} {itm.price} <br />
+                                    <br />
+                                    {itm.description} <strong>{itm.price}</strong>
+                                    <br />
                                     <Input label=""
                                         type="number"
                                         name={itm.itemName}
@@ -151,7 +152,7 @@ export class MenuPage extends React.Component {
                                 <div key={dessert}>
                                     <strong>{itm.itemName}</strong>
                                   <br />
-                                    {itm.description} {itm.price}
+                                    {itm.description} <strong>{itm.price}</strong>
                                     <Input label=""
                                         type="number"
                                         name={itm.itemName}
