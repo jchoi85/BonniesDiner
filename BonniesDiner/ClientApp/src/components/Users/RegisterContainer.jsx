@@ -22,6 +22,7 @@ export class RegisterContainer extends React.Component{
         };
         this.onFieldChange = this.onFieldChange.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.onCheck = this.onCheck.bind(this);
     }
   
      onFieldChange(fieldName, fieldValue) {
@@ -35,6 +36,14 @@ export class RegisterContainer extends React.Component{
         this.setState(nextState);
     };
 
+     onCheck(name, checked) {
+        this.setState({
+            loginEntity: {
+                ...this.state.loginEntity,
+                [name]: checked
+            }
+        })
+    };
    
     onSave() {
         console.log(this.state.registerEntity)
@@ -59,9 +68,10 @@ export class RegisterContainer extends React.Component{
          return (
              <div className="col-md-6">
                 <RegisterForm
-                    onChange={this.onFieldChange}
-                    onSave={this.onSave}
-                    registerEntity={this.state.registerEntity}
+                     onChange={this.onFieldChange}
+                     onSave={this.onSave}
+                     registerEntity={this.state.registerEntity}
+                     onCheck={this.onCheck}
                 />
 
             </div>
