@@ -58,8 +58,8 @@ namespace BonniesDiner.Controllers
 
             return true;
         }
-        [HttpGet("[action]/{orderId}")]
-        public bool CreateOrder(CreateOrderEntity order)
+        [HttpPost("[action]")]
+        public bool CreateOrder([FromBody]List<CreateOrderEntity> order)
         {
             List<OrderLineItemEntity> items = new List<OrderLineItemEntity>();
 
@@ -67,7 +67,7 @@ namespace BonniesDiner.Controllers
 
             decimal total = 0m;
 
-            foreach (CreateOrderMenuItem item in order.MenuItems)
+            foreach (CreateOrderEntity item in order)
             {
                 MenuEntity menuItem = _dinerContext.Menu.FirstOrDefault(x => x.Id == item.MenuId);
                 items.Add(new OrderLineItemEntity {Item = menuItem, Quantity = item.Quantity});

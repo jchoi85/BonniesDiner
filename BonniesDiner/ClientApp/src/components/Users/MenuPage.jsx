@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { Button, ModalWindow, Input, EmbeddedInput } from "../../common/components";
+import AuthService from '../../services/authService';
 
 
 export class MenuPage extends React.Component {
@@ -20,6 +21,7 @@ export class MenuPage extends React.Component {
         }
         this.onFieldChange = this.onFieldChange.bind(this);
         this.getAllItems = this.getAllItems.bind(this);
+        this.Auth = new AuthService();
     }
 
     componentDidMount() {
@@ -80,21 +82,19 @@ export class MenuPage extends React.Component {
         for (var item in this.state.itemsOrdered)
         {
             if (this.state.itemsOrdered[item] > 0)
-                payload.push({ MenuId: item, Quantity: this.state.itemsOrdered[item] })
+                payload.push({ MenuId: parseInt(item), Quantity: this.state.itemsOrdered[item] })
         }
-    //    fetch('/api/menu/register', {
-    //        headers: {
-    //            'Content-Type': 'application/json'
-    //        },
-    //        method: "POST",
-    //        body: JSON.stringify(payload)
-    //    })
-    //        .then(
-    //        this.setState({ menuEntity})
-    //        )
-    //        .catch((error) => {
-    //            console.log("error");
-    //        });
+        console.log(payload)
+        this.Auth.fetch("/api/order/createorder", {
+            method: "POST",
+            body: JSON.stringify(payload)
+        })
+            .then(()=>
+                console.log("success")            
+            )
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     modalToggle() {
@@ -119,8 +119,10 @@ export class MenuPage extends React.Component {
 
     removeItem = (id) => {
         let itemsOrdered = this.state.itemsOrdered;
-        itemsOrdered[id]--;
-        this.setState({ itemsOrdered }, () => console.log(this.state.itemsOrdered));
+        if (itemsOrdered[id] > 0) {
+            itemsOrdered[id]--;
+            this.setState({ itemsOrdered }, () => console.log(this.state.itemsOrdered));
+        }
     }
 
 
