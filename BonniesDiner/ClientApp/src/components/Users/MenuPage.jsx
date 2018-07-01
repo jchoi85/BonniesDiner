@@ -82,7 +82,7 @@ export class MenuPage extends React.Component {
         let entreesOrdered = [];
         let dessertsOrdered = [];
         for (let i = 0; i < this.state.appetizerArray.length; i++) {
-            if (this.state.menuEntity.MenuItems == this.state.appetizerArray[i].itemName) {
+            if (this.state.menuEntity.MenuItems === this.state.appetizerArray[i].itemName) {
                 appsOrdered.push(this.state.appetizerArray[i].itemName);
                 appsOrdered.push(this.state.menuEntity.Quantity);
             }

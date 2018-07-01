@@ -1,6 +1,5 @@
 ﻿
 import * as React from "react";
-import { Link } from "react-router";
 import { Button, Input } from "../../common/components/index";
 
 export const LoginForm = (props) => {
