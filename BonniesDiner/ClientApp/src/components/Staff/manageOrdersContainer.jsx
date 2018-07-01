@@ -96,7 +96,7 @@ export class ManageOrdersContainer extends React.Component {
                             return (
                                 <tr key={ndx}>
                                     <td style={font}>{order.id}</td>
-                                    <td style={font}>{order.orderTotal}</td>
+                                    <td style={font}>${order.orderTotal}</td>
                                    
                                     <td style={font}>{order.statusNew}</td>
                                     <td style={font}><button className="btn" style={fulfillColor}  onClick={() => {
