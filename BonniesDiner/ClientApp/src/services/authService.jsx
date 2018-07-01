@@ -2,7 +2,7 @@
 export default class AuthService {
     // Initializing important variables
     constructor(domain) {
-		this.domain = domain || 'http://localhost:57479' // API server domain
+        this.domain = domain || 'http://localhost:57479' // API server domain
         this.fetch = this.fetch.bind(this) // React binding stuff
         this.login = this.login.bind(this)
         this.getProfile = this.getProfile.bind(this)
@@ -10,7 +10,7 @@ export default class AuthService {
 
     login(email, password) {
         // Get a token from api server using the fetch api
-	    return this.fetch(`${this.domain}/api/user/login`,
+	    return this.fetch("/api/user/login",
 		    {
 			    method: 'POST',
 			    body: JSON.stringify({
@@ -76,7 +76,7 @@ export default class AuthService {
             headers['Authorization'] = 'Bearer ' + this.getToken()
         }
 
-        return fetch(url, {
+        return fetch(this.domain + url, {
             headers,
             ...options
         })

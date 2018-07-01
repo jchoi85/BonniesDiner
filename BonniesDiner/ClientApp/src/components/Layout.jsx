@@ -1,5 +1,10 @@
 import * as React from "react";
 export class Layout extends React.Component {
+
+    componentDidMount() {
+
+    }
+
     render() {
         return (
             <React.Fragment>
