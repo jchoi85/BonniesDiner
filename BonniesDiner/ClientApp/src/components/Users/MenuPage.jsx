@@ -25,6 +25,7 @@ export class MenuPage extends React.Component {
     }
 
     onFieldChange(fieldName, fieldValue) {
+        console.log(fieldName, fieldValue)
         const nextState = {
             ...this.state,
             menuEntity: {
@@ -112,7 +113,12 @@ export class MenuPage extends React.Component {
                                         
                                     {itm.description} {itm.price}
                                     </div>
-                                  
+                                    <Input label=""
+                                        type="number"
+                                        name={itm.itemName}
+                                        onChange={this.onFieldChange}
+                                        placeholder=""
+                                    />
                                 </div>
                             )
                         })}
@@ -127,6 +133,12 @@ export class MenuPage extends React.Component {
                                     <strong>{itm.itemName}</strong>
                                   <br />
                                     {itm.description} {itm.price} <br />
+                                    <Input label=""
+                                        type="number"
+                                        name={itm.itemName}
+                                        onChange={this.onFieldChange}
+                                        placeholder=""
+                                    />
                                 </div>
                             )
                         })}
@@ -140,6 +152,12 @@ export class MenuPage extends React.Component {
                                     <strong>{itm.itemName}</strong>
                                   <br />
                                     {itm.description} {itm.price}
+                                    <Input label=""
+                                        type="number"
+                                        name={itm.itemName}
+                                        onChange={this.onFieldChange}
+                                        placeholder=""
+                                    />
                                 </div>
                             )
                         })}

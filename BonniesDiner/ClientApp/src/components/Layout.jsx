@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export class Layout extends React.Component{
+export class Layout extends React.Component {
     render() {
         return (
             <React.Fragment>
@@ -11,15 +11,10 @@ export class Layout extends React.Component{
                             borderBottom: "1px solid #161b1d"
                         }}>
                             <div className="container">
-                                <div className="navbar-header">
-                                        <span className="sr-only">Toggle navigation</span>
-                                        <span className="icon-bar"></span>
-                                        <span className="icon-bar"></span>
-                                        <span className="icon-bar"></span>
-                                    <a className="navbar-brand" href="/">Hobbyist</a>
-                                </div>
+                                <h3 className="navbar-brand">Bonnie's Diner</h3>
+
                                 <div>
-                                    <ul className="list-inline" style={{ color: "white" }}>
+                                    <ul className="list-inline" style={{ marginLeft:"25px", color: "white" }}>
                                         <li className="active"><a href="#home"><i className="ion-home"></i>Home</a></li>
                                         <li className="active"><a href="/menupage"><i className="ion-document-text"></i>Menu</a></li>
                                         <li className="active"><a href="/login">Login</a></li>
@@ -38,7 +33,7 @@ export class Layout extends React.Component{
 
 
                     <footer className="an-footer">
-                       
+
                     </footer>
                 </div>
             </React.Fragment>

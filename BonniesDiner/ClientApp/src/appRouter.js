@@ -9,13 +9,13 @@ import { MenuPage } from "./components/Users/MenuPage";
 import { Layout } from "../src/components/Layout";
 
 export const AppRouter = () => {
-        return (
-            <Router history={browserHistory}>
-                <Route path="/" component={Layout}>
-                    <IndexRoute component={HomePageContainer} />
-                    <Route path="login" component={LoginContainer} />
-                    <Route path="/menupage" component={MenuPage} />
-                </Route>
-            </Router>
-        )
+    return (
+        <Router history={browserHistory}>
+            <Route path="/" component={Layout}>
+                <IndexRoute component={HomePageContainer} />
+                <Route path="login" component={LoginContainer} />
+                <Route path="menupage" component={MenuPage} />
+            </Route>
+        </Router>
+    );
 }
