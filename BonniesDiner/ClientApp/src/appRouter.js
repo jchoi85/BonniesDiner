@@ -8,6 +8,7 @@ import { Layout } from "../src/components/Layout";
 import { ViewReportsContainer } from "../src/components/Staff/ViewReportsContainer";
 import { ManageOrdersContainer } from './components/Staff/manageOrdersContainer';
 import { OrderStatusContainer } from './components/Staff/orderStatusContainer';
+import { LogoutContainer } from './components/Users/LogoutContainer';
 
 export const AppRouter = () => {
     return (
@@ -18,7 +19,8 @@ export const AppRouter = () => {
                 <Route path="menupage" component={MenuPage} />
                 <Route path="manageorders" component={ManageOrdersContainer} />
                 <Route path="orderstatus" component={OrderStatusContainer} />
-                <Route path="ViewReports" component={ViewReportsContainer} />
+				<Route path="ViewReports" component={ViewReportsContainer} />
+				<Route path="logout" component={LogoutContainer} />
             </Route>
         </Router>
     );
