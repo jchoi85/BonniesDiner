@@ -1,6 +1,5 @@
 ﻿
 import * as React from "react";
-import { Link } from "react-router";
 import { Button, Input } from "../../common/components/index";
 
 export const RegisterForm = (props) => {
@@ -15,31 +14,24 @@ export const RegisterForm = (props) => {
                     <Input
                         label="Name"
                         type="text"
-                        name="firstName"
-                        value={props.registerEntity.name}
+                        name="Username"
+                        value={props.registerEntity.Name}
                         onChange={props.onChange}
                         placeholder="Name"
                     />
                     <Input label="Email"
                         type="email"
-                        name="email"
-                        value={props.registerEntity.email}
+                        name="Email"
+                        value={props.registerEntity.Email}
                         onChange={props.onChange}
                         placeholder="Email"
                     />
                     <Input type="password"
                         label="Password"
-                        name="password"
-                        value={props.registerEntity.password}
+                        name="Password"
+                        value={props.registerEntity.Password}
                         onChange={props.onChange}
                         placeholder="Password"
-                    />
-                    <Input type="password"
-                        label="Confirm Password"
-                        name="confirmPassword"
-                        value={props.registerEntity.confirmPassword}
-                        onChange={props.onChange}
-                        placeholder="Confirm Password"
                     />
                     <div style={{ marginLeft: "90px" }}>
                         <Button

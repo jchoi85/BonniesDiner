@@ -1,6 +1,5 @@
 ﻿import * as React from "react";
 import { RegisterForm } from "./RegisterForm";
-import { Button } from "../../common/components/index";
 
 
 export class RegisterContainer extends React.Component{
@@ -8,16 +7,14 @@ export class RegisterContainer extends React.Component{
         super(props);
         this.state = {
             registerEntity: {
-                name: "",
-                email: "",
-                password: "",
-                confirmPassword: ""
+                Email: "",
+                Password: "",
+                Username: ""
             },
             resetState: {
-                name: "",
-                email: "",
-                password: "",
-                confirmPassword: ""
+                Email: "",
+                Password: "",
+                Username: ""
             }
         };
         this.onFieldChange = this.onFieldChange.bind(this);
@@ -36,13 +33,32 @@ export class RegisterContainer extends React.Component{
     };
 
    
-     onSave() {
-      console.log("test")
+    onSave() {
+        console.log(this.state.registerEntity)
+        let payload = this.state.registerEntity;
+
+        //var data = new FormData();
+        //data.append("json", JSON.stringify(payload));
+        //console.log("data", data)
+
+        fetch('/api/user/register', {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(payload)
+        })
+            .then(
+                this.setState({ registerEntity: this.state.resetState })
+            )
+            .catch((error) => {
+                console.log("error");
+            });
     };
 
      render() {
-        return (
-            <div className="mfp-content">
+         return (
+             <div className="col-md-6">
                 <RegisterForm
                     onChange={this.onFieldChange}
                     onSave={this.onSave}
