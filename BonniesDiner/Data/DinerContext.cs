@@ -42,7 +42,7 @@ namespace BonniesDiner.Data
                 .IsRequired();
             menu
                 .Property(x => x.Description)
-                .HasColumnType("varchar(64)");
+                .HasColumnType("varchar(200)");
             menu
                 .Property(x => x.Price)
                 .HasColumnType("money")
