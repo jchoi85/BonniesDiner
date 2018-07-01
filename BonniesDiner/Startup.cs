@@ -1,4 +1,8 @@
+using System;
+using System.Linq;
 using BonniesDiner.Data;
+using BonniesDiner.Domain.Entity;
+using BonniesDiner.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,10 +38,17 @@ namespace BonniesDiner
                 {
                     x.UseSqlServer(Configuration.GetConnectionString("localDb"));
                 });
+
+            //services.AddDbContext<IdentityContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("localDb"),
+            //        b => b.MigrationsAssembly("BonniesDiner")));
+
+
+            services.AddSingleton<CreateMenuService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DinerContext db)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DinerContext db, CreateMenuService menuService)
         {
             if (env.IsDevelopment())
             {
@@ -48,6 +59,16 @@ namespace BonniesDiner
             {
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
+            }
+
+            try
+            {
+                MenuEntity item = db.Menu.FirstOrDefault(x => x.ItemName != null);
+                if (item == null) menuService.Load(db);
+            }
+            catch
+            {
+                throw new Exception("Error creating menu");
             }
 
             app.UseHttpsRedirection();

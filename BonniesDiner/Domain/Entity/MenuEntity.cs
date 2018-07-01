@@ -17,8 +17,6 @@ namespace BonniesDiner.Domain.Entity
                 throw new ArgumentException($"{nameof(ItemName)} required");
             if (price == 0)
                 throw new ArgumentException($"{nameof(Price)} required");
-            if (string.IsNullOrWhiteSpace(description))
-                throw new ArgumentException($"{nameof(Description)} required");
             if (string.IsNullOrWhiteSpace(category))
                 throw new ArgumentException($"{nameof(Category)} required");
 
