@@ -1,6 +1,7 @@
 ﻿import * as React from "react";
 import { RegisterForm } from "./RegisterForm";
 import { browserHistory } from "react-router";
+import AuthService from "../../services/authService";
 
 
 export class RegisterContainer extends React.Component{
@@ -23,6 +24,11 @@ export class RegisterContainer extends React.Component{
         this.onFieldChange = this.onFieldChange.bind(this);
         this.onSave = this.onSave.bind(this);
         this.onCheck = this.onCheck.bind(this);
+        this.Auth = new AuthService();
+    }
+
+    componentDidMount() {
+        this.Auth.loggedIn() ? browserHistory.push("menuPage") : ""
     }
   
      onFieldChange(fieldName, fieldValue) {
@@ -56,7 +62,10 @@ export class RegisterContainer extends React.Component{
             body: JSON.stringify(payload)
         })
             .then(
-             browserHistory.push("login")
+            this.setState({
+                registerEntity: this.state.resetState
+            } = () => { browserHistory.push("login")})
+             
             )
             .catch((error) => {
                 console.log("error");

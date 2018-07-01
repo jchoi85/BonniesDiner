@@ -7,7 +7,8 @@ export const LoginForm = (props) => {
     return (
         <form className="tg-loginform" method="post">
             <fieldset>
-                <div className="form-group">
+                <div className="form-group" style={{ padding: "20px" }}>
+                    <br/>
                     <Input
                         type="email"
                         name="email"
@@ -17,7 +18,7 @@ export const LoginForm = (props) => {
                         onChange={props.onChange}
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ padding: "20px" }}>
                     <Input type="password"
                         name="password"
                         placeholder="Password"
@@ -35,7 +36,7 @@ export const LoginForm = (props) => {
                     />
                 </div>
                 <div className="tg-description">
-                    <p>Don't have an account? <a href="/#home">Signup</a></p>
+                    <p>Don't have an account? <a href="/#home"><strong>Signup</strong></a></p>
                 </div>
             </fieldset>
         </form>
