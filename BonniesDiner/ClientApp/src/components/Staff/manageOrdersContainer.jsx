@@ -137,7 +137,7 @@ export class ManageOrdersContainer extends React.Component {
 
                     :
 
-                    <div> hi </div>
+                    <div> Sorry You Are Not Permitted </div>
                 }
             </div>
         )
