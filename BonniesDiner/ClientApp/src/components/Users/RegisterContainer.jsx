@@ -1,5 +1,6 @@
 ﻿import * as React from "react";
 import { RegisterForm } from "./RegisterForm";
+import { browserHistory } from "react-router";
 
 
 export class RegisterContainer extends React.Component{
@@ -9,12 +10,14 @@ export class RegisterContainer extends React.Component{
             registerEntity: {
                 Email: "",
                 Password: "",
-                Username: ""
+                Username: "",
+                IsAdmin: false
             },
             resetState: {
                 Email: "",
                 Password: "",
-                Username: ""
+                Username: "",
+                IsAdmin: false
             }
         };
         this.onFieldChange = this.onFieldChange.bind(this);
@@ -37,10 +40,6 @@ export class RegisterContainer extends React.Component{
         console.log(this.state.registerEntity)
         let payload = this.state.registerEntity;
 
-        //var data = new FormData();
-        //data.append("json", JSON.stringify(payload));
-        //console.log("data", data)
-
         fetch('/api/user/register', {
             headers: {
                 'Content-Type': 'application/json'
@@ -49,7 +48,7 @@ export class RegisterContainer extends React.Component{
             body: JSON.stringify(payload)
         })
             .then(
-                this.setState({ registerEntity: this.state.resetState })
+             browserHistory.push("login")
             )
             .catch((error) => {
                 console.log("error");

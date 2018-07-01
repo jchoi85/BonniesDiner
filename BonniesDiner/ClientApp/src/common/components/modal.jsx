@@ -1,7 +1,12 @@
 ﻿import * as React from "react";
 
-export class ModalWindow {
+export class ModalWindow extends React.Component {
     constructor(props) {
+        super(props)
+        this.state = {
+            
+        }
+
     }
 
     componentDidMount() {

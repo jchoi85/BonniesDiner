@@ -12,7 +12,7 @@ export const HomePageContainer = () => (
                         <div className="col-md-8">
                             <h1 className="wow fadeInDown" style={{ visibility: "visible", animationName: "fadeInDown" }}><span>Bonnie's Famous Vegan Diner</span></h1>
                             <p className="wow fadeInUp" style={{ visibility: "visible", animationName: "fadeInUp" }}>Bonnie's Famous Diner is known for excellent dishes created by autonomous chefs.  With advanced robotics, almost everything in the restaurant is operated by machines - cooking, serving, and cleaning.</p>
-                            <button className="an-btn an-btn-default btn-big wow fadeIn" style={{ visibility: "hidden", animationName: "none" }}>Check Out Today's Build!</button>
+                           
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,6 @@ export const HomePageContainer = () => (
                     <RegisterContainer
                     />
                 </div>
-                <p className="wow fadeInUp" style={{ paddingTop: "10px" }}> Join the Community! </p>
             </div>
 
         </div>

@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
   </ItemGroup>
@@ -33,6 +34,10 @@
     <None Remove="ClientApp\src\common\components\tabs.jsx" />
     <None Remove="ClientApp\src\common\components\validation.jsx" />
     <None Remove="ClientApp\src\components\Users\RegisterContainer.jsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\Components\Staff\" />
   </ItemGroup>
 
   <ItemGroup>

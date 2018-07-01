@@ -1,4 +1,5 @@
-﻿using BonniesDiner.Domain.Entity;
+﻿using System.Reflection;
+using BonniesDiner.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BonniesDiner.Data
@@ -32,6 +33,11 @@ namespace BonniesDiner.Data
                 .Property(x => x.Username)
                 .HasColumnType("varchar(32)")
                 .IsRequired();
+            user
+             .Property(x => x.IsAdmin)
+             .HasColumnType("bit")
+             .IsRequired();
+
 
             var menu = modelBuilder.Entity<MenuEntity>();
             menu
@@ -71,6 +77,7 @@ namespace BonniesDiner.Data
                 .Property(x => x.Quantity)
                 .HasColumnType("int")
                 .IsRequired();
+
         }
 
         public DbSet<UserEntity> User { get; set; }
