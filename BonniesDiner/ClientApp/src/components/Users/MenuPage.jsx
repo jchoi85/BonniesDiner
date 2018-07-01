@@ -38,7 +38,7 @@ export class MenuPage extends React.Component {
 
 
     getAllItems() {
-        
+
         fetch('/api/menu/getmenuitems')
             .then(response => {
                 if (response.ok) {
@@ -77,16 +77,29 @@ export class MenuPage extends React.Component {
     }
 
     successModal() {
+        let appsOrdered = [];
+        let entreesOrdered = [];
+        let dessertsOrdered = [];
+        for (let i = 0; i < this.state.appetizerArray.length; i++) {
+            appsOrdered.push(this.state.appetizerArray[i].itemName); 
+        }
+        for (let i = 0; i < this.state.entreeArray.length; i++) {
+            entreesOrdered.push(this.state.entreeArray[i].itemName);
+        }
+        for (let i = 0; i < this.state.dessertArray.length; i++) {
+            dessertsOrdered.push(this.state.dessertArray[i].itemName);
+        }
         return (
             <div>
                 <h2 style={{ textAlign: "center" }}>Please confirm your order</h2>
                 <br />
                 <div style={{ float: "right" }}>
-                    <Button
-                        className="btn btn-sm btn-danger"
-                        onClick={this.getAllItems}
-                        label="Edit"
-                        disabled={false} />
+                    <strong>{appsOrdered.join(", ")}</strong>
+                    <br />
+                    <strong>{entreesOrdered.join(", ")}</strong>
+                    <br />
+                    <strong>{dessertsOrdered.join(", ")}</strong>
+                    <br />
                     <span style={{ paddingLeft: "10px" }}></span>
                     <Button
                         className="btn btn-sm btn-success"
@@ -104,86 +117,78 @@ export class MenuPage extends React.Component {
                 <div className="col-md-8 col-md-3-offset">
                     <h2 style={{ textAlign: "center" }}>Bonnie's Vegan Cuisine</h2> <br />
                     <div className="col-md-5 col-md-offset-3">
-                    <div>
-                        <h6 style={{ textAlign: "center" }}><strong>Appetizers</strong></h6>
-                        {this.state.appetizerArray.map((itm, app) => {
-                            return (
-                                <div key={app}>
-                                    <div>
-                                        <strong>{itm.itemName}</strong> <br />
-                                        
-                                    {itm.description} {itm.price}
+                        <div>
+                            <h6 style={{ textAlign: "center" }}><strong>Appetizers</strong></h6>
+                            {this.state.appetizerArray.map((itm, app) => {
+                                return (
+                                    <div key={app}>
+                                        <div>
+                                            <strong>{itm.itemName}</strong> <br />
+
+                                            {itm.description} {itm.price}
+                                        </div>
+                                        <Input label=""
+                                            type="number"
+                                            name={itm.itemName}
+                                            onChange={this.onFieldChange}
+                                            placeholder=""
+                                        />
                                     </div>
-                                    <Input label=""
-                                        type="number"
-                                        name={itm.itemName}
-                                        onChange={this.onFieldChange}
-                                        placeholder=""
-                                    />
-                                </div>
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
+                        <br />
+                        <div>
+                            <h6 style={{ textAlign: "center" }}><strong>Entrees</strong></h6>
+                            {this.state.entreeArray.map((itm, entree) => {
+                                return (
+                                    <div key={entree}>
+                                        <strong>{itm.itemName}</strong>
+                                        <br />
+                                        {itm.description} {itm.price} <br />
+                                        <Input label=""
+                                            type="number"
+                                            name={itm.itemName}
+                                            onChange={this.onFieldChange}
+                                            placeholder=""
+                                        />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <br />
+                        <div>
+                            <h6 style={{ textAlign: "center" }}><strong>Dessert</strong></h6>
+                            {this.state.dessertArray.map((itm, dessert) => {
+                                return (
+                                    <div key={dessert}>
+                                        <strong>{itm.itemName}</strong>
+                                        <br />
+                                        {itm.description} {itm.price}
+                                        <Input label=""
+                                            type="number"
+                                            name={itm.itemName}
+                                            onChange={this.onFieldChange}
+                                            placeholder=""
+                                        />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div>
+                            <Button
+                                className="btn btn-sm btn-success"
+                                onClick={this.modalToggle}
+                                label="Submit"
+                                disabled={false} />
+                            <ModalWindow
+                                showModal={this.state.successModal}
+                                onClose={this.modalToggle}>
+                                {this.successModal()}
+                            </ModalWindow>
+                        </div>
                     </div>
-                    <br />
-                   
-                    <div>
-                        <h6 style={{ textAlign: "center" }}><strong>Entrees</strong></h6>
-                        {this.state.entreeArray.map((itm, entree) => {
-                            return (
-                                <div key={entree}>
-                                    <strong>{itm.itemName}</strong>
-                                  <br />
-                                    {itm.description} {itm.price} <br />
-                                    <Input label=""
-                                        type="number"
-                                        name={itm.itemName}
-                                        onChange={this.onFieldChange}
-                                        placeholder=""
-                                    />
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <br />
-                    <div>
-                        <h6 style={{ textAlign: "center" }}><strong>Dessert</strong></h6>
-                        {this.state.dessertArray.map((itm, dessert) => {
-                            return (
-                                <div key={dessert}>
-                                    <strong>{itm.itemName}</strong>
-                                  <br />
-                                    {itm.description} {itm.price}
-                                    <Input label=""
-                                        type="number"
-                                        name={itm.itemName}
-                                        onChange={this.onFieldChange}
-                                        placeholder=""
-                                    />
-                                </div>
-                            )
-                        })}
-                    </div>
-                <Button
-                    className="btn btn-sm btn-success"
-                    onClick={this.modalToggle}
-                    label="Submit"
-                    disabled={false} />
-                <ModalWindow
-                    showModal={this.state.successModal}
-                    onClose={this.modalToggle}>
-                    {this.successModal()}
-                    </ModalWindow>
                 </div>
-                </div>
-                <div className="col-md-5 col-md-offset-2">
-                    <div className="pull-right" style={{ width: "100px", justifyContent: "flexStart" }}>
-                        <Input
-                            label="Quantity"
-                            name="Quantity"
-                            value={this.state.menuEntity.Quantity}
-                            onChange={this.onFieldChange} /></div> <br />
-                </div>
-               
             </div>
         )
     }
