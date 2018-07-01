@@ -28,7 +28,8 @@ export class Layout extends React.Component {
                                     <ul className="nav navbar-nav">
                                         <li className="active"><a href="/"><i className="ion-home"></i>Home</a></li>
                                         <li className="active"><a href="/menupage"><i className="ion-document-text"></i>Menu</a></li>
-                                        <li className="active"><a href="/login"><i></i>Login</a></li>
+										<li className="active"><a href="/login"><i></i>Login</a></li>
+	                                    <li className="active"><a href="/logout"><i></i>Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

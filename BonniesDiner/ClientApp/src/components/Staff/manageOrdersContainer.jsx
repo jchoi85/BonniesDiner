@@ -1,6 +1,7 @@
 ﻿import * as React from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import AuthService from "../../services/authService";
 
 export class ManageOrdersContainer extends React.Component {
     constructor(props) {
@@ -15,32 +16,29 @@ export class ManageOrdersContainer extends React.Component {
 
         };
         this.fulfillOrder = this.fulfillOrder.bind(this);
-        this.cancelOrder = this.cancelOrder.bind(this);
+		this.cancelOrder = this.cancelOrder.bind(this);
+	    this.Auth = new AuthService();
     }
     componentDidMount() {
         this.getOpenOrders();
     }
     fulfillOrder(id) {
-        fetch('/api/order/fulfillorder/' + (id))
+        this.Auth.fetch('/api/order/fulfillorder/' + (id))
     }
 
     cancelOrder(id) {
-        fetch('/api/order/cancelorder/' + (id))
+        this.Auth.fetch('/api/order/cancelorder/' + (id))
     }
 
     
     getOpenOrders() {
-        fetch('/api/order/GetOpenOrders')
-            .then(response => {
-                if (response.ok) {
-                    response.json().then(json => {
-                        console.log(json);
-                        this.setState({
-                            orders: json
-                        })
-                    })
-
-                }
+        this.Auth.fetch('/api/order/GetOpenOrders')
+			.then(response => {
+				console.log(response)
+		        this.setState({
+				        orders: response
+			        },
+			        () => console.log(this.state));
             })
             .catch(function (error) {
                 console.log("error");
@@ -77,7 +75,7 @@ export class ManageOrdersContainer extends React.Component {
                                 <td>{order.id}</td>
                                     <td>{order.orderTotal}</td>
                                    
-                                    <td>{order.statusNew.toUTCString()}</td>
+                                    <td>{order.statusNew}</td>
                                     <td><button className="btn btn-success" onClick={() => {
                                         this.fulfillOrder(order.id);
                                       
