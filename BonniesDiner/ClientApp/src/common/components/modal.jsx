@@ -44,7 +44,7 @@ export class ModalWindow extends React.Component {
                     {this.props.children}
                     <div className="footer" style={{ textAlign: 'center' }}>
                         <button className="btn btn-sm btn-danger" onClick={this.props.onClose}>
-                            Edit
+                            Close
                         </button>
                     </div>
                 </div >
