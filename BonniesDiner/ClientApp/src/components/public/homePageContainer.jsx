@@ -5,7 +5,7 @@ export class HomePageContainer extends React.Component {
     render() {
         return (
             <div>
-                <div className="banner-section" style={{ marginLeft: "200px" }}>
+                <div className="banner-section">
                     <div className="an-home-img-container" style={{ background: "url('./Content/assets/img/creative-craft.jpg') center center no-repeat", backgroundSize: 'cover' }}>
                         <div className="overlay"></div>
                         <div className="home-banner-content">
