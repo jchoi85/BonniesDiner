@@ -43,10 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\Components\Staff\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\common\components\button.jsx" />
     <TypeScriptCompile Include="ClientApp\src\common\components\dropDownList.jsx" />
     <TypeScriptCompile Include="ClientApp\src\common\components\radio.jsx" />
