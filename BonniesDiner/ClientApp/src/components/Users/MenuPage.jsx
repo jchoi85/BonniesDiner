@@ -26,7 +26,6 @@ export class MenuPage extends React.Component {
     }
 
     onFieldChange(fieldName, fieldValue) {
-        console.log(fieldName, fieldValue)
         const nextState = {
             ...this.state,
             menuEntity: {
@@ -77,6 +76,7 @@ export class MenuPage extends React.Component {
 
     postMenuItems = () => {
         let payload = [];
+
         for (var item in this.state.itemsOrdered) {
             if (this.state.itemsOrdered[item] > 0)
                 payload.push({ MenuId: parseInt(item), Quantity: this.state.itemsOrdered[item] })
@@ -98,7 +98,6 @@ export class MenuPage extends React.Component {
     }
 
     modalToggle() {
-        if (this.state.errorModal == false) {
             this.setState({ successModal: !this.state.successModal }, () => {
                 let itemsOrdered = this.state.itemsOrdered;
                 for (var item in itemsOrdered) {
@@ -108,7 +107,6 @@ export class MenuPage extends React.Component {
                     itemsOrdered
                 })
             });
-        }
     }
 
     errorToggle() {

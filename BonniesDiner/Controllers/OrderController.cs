@@ -75,8 +75,9 @@ namespace BonniesDiner.Controllers
             _dinerContext.Order.Update(openOrder);
             _dinerContext.SaveChanges();
             EmailMessage email = new EmailMessage();
-            email.ToAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
-            email.Subject = "TEST";
+            email.ToAddresses.Add(new EmailAddress { Address = User.Identity.Name, Name = User.Identity.Name });
+            email.Subject = "Your Order has been completed!";
+            email.Content = "Thanks for ordering! Your order has been completed!";
             email.FromAddresses.Add(new EmailAddress { Address = "bonniesdinerexsilio@gmail.com", Name = "Bonnies Diner" });
             
             _emailService.Send(email);
@@ -92,6 +93,14 @@ namespace BonniesDiner.Controllers
             openOrder.CancelOrder(DateTime.Now);
             _dinerContext.Order.Update(openOrder);
             _dinerContext.SaveChanges();
+
+            EmailMessage email = new EmailMessage();
+            email.ToAddresses.Add(new EmailAddress { Address = User.Identity.Name, Name = User.Identity.Name });
+            email.Subject = "Your Order has been cancelled!";
+            email.Content = "Your order has been cancelled!";
+            email.FromAddresses.Add(new EmailAddress { Address = "bonniesdinerexsilio@gmail.com", Name = "Bonnies Diner" });
+
+            _emailService.Send(email);
 
             return true;
         }
@@ -120,6 +129,14 @@ namespace BonniesDiner.Controllers
 
             currentUser.AddOrder(newOrder);
             _dinerContext.SaveChanges();
+
+            EmailMessage email = new EmailMessage();
+            email.ToAddresses.Add(new EmailAddress { Address = User.Identity.Name, Name = User.Identity.Name });
+            email.Subject = "You have placed a new order!";
+            email.Content = "Thanks for ordering! Your order will be ready shortly!";
+            email.FromAddresses.Add(new EmailAddress { Address = "bonniesdinerexsilio@gmail.com", Name = "Bonnies Diner" });
+
+            _emailService.Send(email);
 
             return true;
         }
