@@ -5,19 +5,26 @@ export class Layout extends React.Component {
         return (
             <React.Fragment>
                 <div className="an-home-section" id="home">
-                    <header className="an-header">
-                        <nav className="navbar navbar-default navbar-fixed-top" style={{
+                    <header className="an-header" style={{ position: "fixed", zIndex : "1000" }}>
+                        <nav className="navbar-default" style={{
                             background: "#2c353a",
                             borderBottom: "1px solid #161b1d"
                         }}>
                             <div className="container">
-                                <h3 className="navbar-brand">Bonnie's Diner</h3>
-
-                                <div>
-                                    <ul className="list-inline" style={{ marginLeft:"25px", color: "white" }}>
-                                        <li className="active"><a href="#home"><i className="ion-home"></i>Home</a></li>
+                                <div className="navbar-header">
+                                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span className="sr-only">Toggle navigation</span>
+                                        <span className="icon-bar"></span>
+                                        <span className="icon-bar"></span>
+                                        <span className="icon-bar"></span>
+                                    </button>
+                                    <a className="navbar-brand" href="/">Bonnie's Diner</a>
+                                </div>
+                                <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul className="nav navbar-nav">
+                                        <li className="active"><a href="/"><i className="ion-home"></i>Home</a></li>
                                         <li className="active"><a href="/menupage"><i className="ion-document-text"></i>Menu</a></li>
-                                        <li className="active"><a href="/login">Login</a></li>
+                                        <li className="active"><a href="/login"><i></i>Login</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -25,7 +32,21 @@ export class Layout extends React.Component {
                     </header>
 
 
-                    <div style={{ width: "100%", minHeight: "100vh" }}>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div style={{ width: "100%", minHeight: "100vh", paddingTop : "50px" }}>
                         <div className="">
                             {this.props.children}
                         </div>
