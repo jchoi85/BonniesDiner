@@ -1,4 +1,5 @@
 ﻿import * as React from "react";
+import { RegisterContainer } from "../Users/RegisterContainer"
 
 export class HomePageContainer extends React.Component {
     render() {
@@ -19,14 +20,8 @@ export class HomePageContainer extends React.Component {
                             </div>
                             <p className="wow fadeInUp" style={{ paddingTop: "10px" }}> Join the Community! </p>
                             <div className="col-md-4">
-                                <form action="#">
-                                    <input type="text" className="an-form-control wow fadeInUp" placeholder="Tell Us Your First Name" />
-                                    <input type="text" className="an-form-control wow fadeInUp" placeholder="Tell Us Your Last Name" />
-                                    <input type="text" className="an-form-control wow fadeInUp" placeholder="Your Email Address (E.g example@mail.com)" />
-                                    <input type="text" className="an-form-control wow fadeInUp" placeholder="Enter a Password" />
-                                    <input type="text" className="an-form-control wow fadeInUp" placeholder="Confirm Your Password" />
-                                    <button className="an-btn an-btn-default wow fadeInDown">Register</button>
-                                </form>
+                                <RegisterContainer
+                                />
                             </div>
                         </div>
 
