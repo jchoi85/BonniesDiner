@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BonniesDiner.Data;
 using BonniesDiner.Domain.Entity;
+using BonniesDiner.Services;
 using CsvHelper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +16,14 @@ namespace BonniesDiner.Controllers
     public class OrderController : Controller
     {
         private readonly DinerContext _dinerContext;
+        private readonly EmailService _emailService;
 
-        public OrderController(DinerContext dinerContext)
+        public OrderController(DinerContext dinerContext, EmailService emailService)
         {
             _dinerContext = dinerContext;
+            _emailService = emailService;
         }
+
         [HttpGet("[action]")]
         public IEnumerable<OrderEntity> GetOpenOrders()
         {
@@ -40,7 +44,12 @@ namespace BonniesDiner.Controllers
             openOrder.CompleteOrder(DateTime.Now);
             _dinerContext.Order.Update(openOrder);
             _dinerContext.SaveChanges();
-
+            EmailMessage email = new EmailMessage();
+            email.ToAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
+            email.Subject = "TEST";
+            email.FromAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
+            
+            _emailService.Send(email);
             return true;
         }
         [HttpPost("[action]")]

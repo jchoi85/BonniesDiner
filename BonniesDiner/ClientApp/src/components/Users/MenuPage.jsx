@@ -123,7 +123,7 @@ export class MenuPage extends React.Component {
 
     render() {
         return (
-            <div className="container" style={{ marginTop: "100px" }}>
+            <div className="container" style={{ marginTop: "25px" }}>
                 <div className="col-md-8 col-md-3-offset">
                     <h2 style={{ textAlign: "center" }}>Bonnie's Vegan Cuisine</h2> <br />
                     <div className="col-md-12 col-md-offset-2">

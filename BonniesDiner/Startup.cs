@@ -47,6 +47,10 @@ namespace BonniesDiner
 
             services.AddSingleton<CreateMenuService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddMvc();
+            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +72,7 @@ namespace BonniesDiner
                 MenuEntity item = db.Menu.FirstOrDefault(x => x.ItemName != null);
                 if (item == null) menuService.Load(db);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception("Error creating menu");
             }
@@ -94,5 +98,6 @@ namespace BonniesDiner
                 }
             });
         }
+        
     }
 }

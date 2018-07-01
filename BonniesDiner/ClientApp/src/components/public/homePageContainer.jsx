@@ -13,11 +13,11 @@ export const HomePageContainer = () => (
                         <p className="wow fadeInUp" style={{ visibility: "visible", animationName: "fadeInUp" }}>Bonnie's Famous Diner is known for excellent dishes created by autonomous chefs.  With advanced robotics, almost everything in the restaurant is operated by machines - cooking, serving, and cleaning.</p>
                     </div>
                 </div>
-                <div className='row'>
-                    <div className="col-md-4 col-md-offset-3">
+                <div className='row' style={{
+                    display: "grid", gridTemplateColumns: "33% 33% 33%"
+                }}>
                         <RegisterContainer
                         />
-                    </div>
                 </div>
             </div>
 

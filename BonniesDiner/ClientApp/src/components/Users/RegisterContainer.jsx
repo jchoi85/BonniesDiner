@@ -37,16 +37,16 @@ export class RegisterContainer extends React.Component{
     };
 
      onCheck(name, checked) {
-        this.setState({
-            loginEntity: {
-                ...this.state.loginEntity,
+         this.setState({
+             registerEntity: {
+                 ...this.state.registerEntity,
                 [name]: checked
             }
         })
     };
    
     onSave() {
-        console.log(this.state.registerEntity)
+        //console.log(this.state.registerEntity)
         let payload = this.state.registerEntity;
 
         fetch('/api/user/register', {
@@ -66,12 +66,16 @@ export class RegisterContainer extends React.Component{
 
      render() {
          return (
+             <div>
+             <h3 style={{ textAlign: "center", color: "white" }}>Register Now</h3>
+             <br />
                 <RegisterForm
                      onChange={this.onFieldChange}
                      onSave={this.onSave}
                      registerEntity={this.state.registerEntity}
                      onCheck={this.onCheck}
-                />
+                 />
+             </div>
         );
     }
 }
