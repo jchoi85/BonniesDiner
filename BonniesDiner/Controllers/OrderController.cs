@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using BonniesDiner.Data;
 using BonniesDiner.Domain.Entity;
 using CsvHelper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BonniesDiner.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class OrderController : Controller
     {

@@ -2,6 +2,7 @@
 import * as React from "react";
 import { LoginForm } from "./LoginForm";
 import { browserHistory } from "react-router";
+import AuthService from "../../services/authService";
 
 export class LoginContainer extends React.Component{
 
@@ -15,7 +16,8 @@ export class LoginContainer extends React.Component{
         };
 
         this.onFieldChange = this.onFieldChange.bind(this);
-        this.onSave = this.onSave.bind(this);
+		this.onSave = this.onSave.bind(this);
+	    this.Auth = new AuthService();
     }
 
     componentDidMount() {
@@ -31,7 +33,7 @@ export class LoginContainer extends React.Component{
             }
         }
         this.setState(nextState);
-    };
+    }
     
     LoginOnEnter(event) {
         if (event.key === 'Enter') {
@@ -40,24 +42,18 @@ export class LoginContainer extends React.Component{
             event.preventDefault();
         }
     }
-    onSave() {
-        console.log(this.state.loginEntity)
+	onSave() {
         let payload = this.state.loginEntity;
 
-        fetch('/api/user/login', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(payload)
-        })
-            .then(
-                browserHistory.push("menuPage")
+	    this.Auth.login(payload.email, payload.password)
+			.then(response => 
+				console.log(response)
+                //browserHistory.push("menuPage")
             )
             .catch((error) => {
-                console.log("error");
+                console.log(error);
             });
-    };
+    }
     
      render() {
          return (
