@@ -2,6 +2,7 @@
 import { EntireOrderList } from "./EntireOrderList";
 import { PopularityItemList } from "./PopularityItemList";
 import { IndividualItemList } from "./IndividualItemList";
+//import { authService } from "../../services/authService";
 
 
 export class ViewReportsContainer extends React.Component {
@@ -27,10 +28,13 @@ export class ViewReportsContainer extends React.Component {
                 Quantity: 0
             }
         }
+        //this.Auth = new authService();
+
         }
 
         componentDidMount() {
             this.getAllItems();
+            //this.getOpenOrders();
         };
 
 
@@ -66,8 +70,21 @@ export class ViewReportsContainer extends React.Component {
                     console.log("error");
                 });
         };
+    
+    //getOpenOrders() {
+    //    this.Auth.fetch('/api/order/GetOpenOrders')
+    //        .then(response => {
+    //            if (response.ok) {
+    //                response.json().then(json => {
+    //                    console.log(json);
+    //                })
 
-
+    //            }
+    //        })
+    //        .catch(function (error) {
+    //            console.log("error");
+    //        });
+    //}
 
 
         render() {
