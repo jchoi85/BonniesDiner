@@ -6,15 +6,9 @@ export class MenuPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            menuEntity: {
-                category: "",
-                description: "",
-                id: 0,
-                itemName: "",
-                price: 0,
-                timesOrdered: 0
-            },
-            menuArray: []
+            appetizerArray: [],
+            entreeArray: [],
+            dessertArray: []
         }
         this.modalToggle = this.modalToggle.bind(this);
     }
@@ -28,48 +22,44 @@ export class MenuPage extends React.Component {
             .then(response => {
                 if (response.ok) {
                     response.json().then(json => {
+                        let appetizerArray = [];
+                        let entreeArray = [];
+                        let dessertArray = [];
+                        json.forEach(item => {
+                            switch (item.category) {
+                                case "Appetizers":
+                                    appetizerArray.push(item);
+                                    break;
+                                case "Entrees":
+                                    entreeArray.push(item);
+                                    break;
+                                case "Dessert":
+                                    dessertArray.push(item);
+                                    break;
+                            }
+                        });
                         this.setState({
-                            menuArray: json
-                        })
-                        console.log(json);
+                            appetizerArray: appetizerArray, entreeArray: entreeArray, dessertArray: dessertArray
+                        }, () => console.log(json));
                     });
                 }
-                this.modalToggle();
             })
             .catch(function (error) {
                 console.log("error");
             });
     }
-
-
+    
 
     modalToggle() {
-       
       this.setState({ successModal: !this.state.successModal });
 
     }
 
     successModal() {
-        //var storeIdsWeHave = [];
-        //for (var i = 0; i < this.state.menuArray.length; i++) {
-        //    storeIdsWeHave.push(this.state.menuArray[i].StoreId);
-        //    if (this.state.menuArray[i].StoreId.length > 0) {
-        //        var hideWarning = "show";
-        //    }
-        //}
         return (
-            <div key={this.state.menuEntity.Id}>
+            <div>
                 <h2 style={{ textAlign: "center" }}>Please confirm your order</h2>
-                <div>
-                   
-                  
-                    <strong>Appetizers </strong> < br />
-                    {this.state.menuEntity.category} <br />
-                    {this.state.menuEntity.description} <br />
-                    {this.state.menuEntity.itemName} <br />
-                    {this.state.menuEntity.price} <br />
-
-                </div>
+                
                 <br />
                 <div style={{ float: "right" }}>
                     <Button
@@ -85,47 +75,52 @@ export class MenuPage extends React.Component {
                         disabled={false} />
                 </div>
             </div>
-        )
+        );
     }
-
-
-//    French Fries<br />
-//Chick - un Nuggets < br />
-//    Cauliflower Buffalo Wings < br /> <br />
-//        <strong>Entrees </strong> <br />
-
-//                    Chick - un Marinara Melt < br />
-//    Spinach Artichoke Pesto Pizza < br />
-//        Classic Veggie Burger < br />
-//            Jackfruit Tacos < br />
-//                Southwestern Quinoa Salad < br /> <br />
-//                    <strong>Dessert</strong> <br />
-//                    Carrot Cake < br />
-//    Chocolate Cake < br />
-//        Coconut Cake < br />
-//            Ice Cream < br />
-//                <br />
-
 
     render() {
         return (
             <div className="container">
                 <div className="col-md-6 col-md-offset-3">
+                    <h2 style={{ textAlign: "center" }}>Bonnie's Vegan Cuisine</h2> <br />
                     <div>
-                        {this.state.menuArray.map((itm, index) => {
+                        <h6 style={{ textAlign: "center" }}><strong>Appetizers</strong></h6>
+                        {this.state.appetizerArray.map((itm, app) => {
                             return (
-                                <div key={index}>
-                                    {itm.category}
-                                    {itm.itemName}
-                                    {itm.description}
-                                    {itm.price}
+                                <div key={app}>
+                                    <strong>{itm.itemName}</strong> <br />
+                                    {itm.description} <div style={{ float: "right" }}>{itm.price}</div> <br /><br />
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <br />
+                    <div>
+                        <h6 style={{ textAlign: "center" }}><strong>Entrees</strong></h6>
+                        {this.state.entreeArray.map((itm, entree) => {
+                            return (
+                                <div key={entree}>
+                                    <strong>{itm.itemName}</strong> <br />
+                                    {itm.description} <div style={{ float: "right" }}>{itm.price}</div> <br /><br />
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <br />
+                    <div>
+                        <h6 style={{ textAlign: "center" }}><strong>Dessert</strong></h6>
+                        {this.state.dessertArray.map((itm, dessert) => {
+                            return (
+                                <div key={dessert}>
+                                    <strong>{itm.itemName}</strong> <br />
+                                    {itm.description} <div style={{ float: "right" }}>{itm.price}</div> <br /><br />
                                 </div>
                             )
                         })}
                     </div>
                 <Button
                     className="btn btn-sm btn-success"
-                    onClick={this.getAllItems}
+                    onClick={this.modalToggle}
                     label="Submit"
                     disabled={false} />
                 <ModalWindow
