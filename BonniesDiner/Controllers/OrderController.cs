@@ -25,14 +25,14 @@ namespace BonniesDiner.Controllers
         [HttpGet("[action]")]
         public IEnumerable<OrderEntity> GetOpenOrders()
         {
-            return _dinerContext.Order.ToArray();
+            return _dinerContext.Order.Where(x => x.StatusFulfilled == null && x.StatusCancelled == null).ToList();
         }
         [HttpGet("[action]")]
         public IEnumerable<OrderEntity> GetAllOrders()
         {
             return _dinerContext.Order.ToList();
         }
-        [HttpPost("[action]")]
+        [HttpGet("[action]/{orderId}")]
         public bool FulfillOrder(int orderId)
         {
             OrderEntity openOrder = _dinerContext.Order.FirstOrDefault(x => x.Id == orderId);
@@ -45,7 +45,7 @@ namespace BonniesDiner.Controllers
 
             return true;
         }
-        [HttpPost("[action]")]
+        [HttpGet("[action]/{orderId}")]
         public bool CancelOrder(int orderId)
         {
             OrderEntity openOrder = _dinerContext.Order.FirstOrDefault(x => x.Id == orderId);

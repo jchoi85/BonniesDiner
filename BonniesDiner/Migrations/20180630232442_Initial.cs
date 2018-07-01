@@ -42,7 +42,7 @@ namespace BonniesDiner.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderEntity",
+                name: "Order",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -55,9 +55,9 @@ namespace BonniesDiner.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderEntity", x => x.Id);
+                    table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderEntity_User_UserEntityId",
+                        name: "FK_Order_User_UserEntityId",
                         column: x => x.UserEntityId,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -84,16 +84,16 @@ namespace BonniesDiner.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrderLineItem_OrderEntity_OrderEntityId",
+                        name: "FK_OrderLineItem_Order_OrderId",
                         column: x => x.OrderEntityId,
-                        principalTable: "OrderEntity",
+                        principalTable: "Order",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderEntity_UserEntityId",
-                table: "OrderEntity",
+                name: "IX_Order_UserEntityId",
+                table: "Order",
                 column: "UserEntityId");
 
             migrationBuilder.CreateIndex(
@@ -102,7 +102,7 @@ namespace BonniesDiner.Migrations
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderLineItem_OrderEntityId",
+                name: "IX_OrderLineItem_OrderId",
                 table: "OrderLineItem",
                 column: "OrderEntityId");
         }
@@ -116,7 +116,7 @@ namespace BonniesDiner.Migrations
                 name: "Menu");
 
             migrationBuilder.DropTable(
-                name: "OrderEntity");
+                name: "Order");
 
             migrationBuilder.DropTable(
                 name: "User");

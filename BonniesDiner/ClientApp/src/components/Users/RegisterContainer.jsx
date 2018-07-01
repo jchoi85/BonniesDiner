@@ -65,15 +65,12 @@ export class RegisterContainer extends React.Component{
 
      render() {
          return (
-             <div className="col-md-6">
                 <RegisterForm
                      onChange={this.onFieldChange}
                      onSave={this.onSave}
                      registerEntity={this.state.registerEntity}
                      onCheck={this.onCheck}
                 />
-
-            </div>
         );
     }
 }
