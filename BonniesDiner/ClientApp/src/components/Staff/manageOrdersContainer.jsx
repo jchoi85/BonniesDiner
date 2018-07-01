@@ -1,6 +1,7 @@
 ﻿import * as React from "react";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import AuthService from "../../services/authService";
 
 export class ManageOrdersContainer extends React.Component {
     constructor(props) {
@@ -16,32 +17,35 @@ export class ManageOrdersContainer extends React.Component {
         };
         this.fulfillOrder = this.fulfillOrder.bind(this);
         this.cancelOrder = this.cancelOrder.bind(this);
+        this.Auth = new AuthService();
+
     }
     componentDidMount() {
         this.getOpenOrders();
     }
     fulfillOrder(id) {
-        fetch('/api/order/fulfillorder/' + (id))
-    }
+        this.Auth.fetch('/api/order/fulfillorder/' + (id)), () => this.getOpenOrders();
 
+    }
+    
     cancelOrder(id) {
-        fetch('/api/order/cancelorder/' + (id))
+        this.Auth.fetch('/api/order/cancelorder/' + (id)), () => this.getOpenOrders();
+     
     }
 
     
     getOpenOrders() {
-        fetch('/api/order/GetOpenOrders')
+        this.Auth.fetch('/api/order/GetOpenOrders')
             .then(response => {
-                if (response.ok) {
-                    response.json().then(json => {
+                    console.log(response)
                         this.setState({
-                            orders: json
+                            orders: response
                         })
-                    })
+           
 
-                }
             })
             .catch(function (error) {
+                console.log("not authorized")
             });
     }
 
