@@ -9,8 +9,7 @@ import FetchData from './components/FetchData';
 export default () => (
   <Layout>
     <Route exact path='/' component={Home} />
-        <Route path='/Counter' component={Counter} />
-       
+     <Route path='/Counter' component={Counter} />
     <Route path='/fetchdata/:startDateIndex?' component={FetchData} />
   </Layout>
 );
