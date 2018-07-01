@@ -2,13 +2,7 @@ import * as React from "react";
 import AuthService from "../services/authService";
 
 export class Layout extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isAdmin: false
-        };
-        this.Auth = new AuthService();
-    }
+
 
     componentDidMount() {
 
