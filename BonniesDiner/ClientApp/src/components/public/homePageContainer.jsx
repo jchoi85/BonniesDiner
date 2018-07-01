@@ -4,7 +4,7 @@ import { RegisterContainer } from "../Users/RegisterContainer"
 export class HomePageContainer extends React.Component {
     render() {
         return (
-            <React.Fragment>
+            <div>
                 <div className="banner-section" style={{ marginLeft: "200px" }}>
                     <div className="an-home-img-container" style={{ background: "url('./Content/assets/img/creative-craft.jpg') center center no-repeat", backgroundSize: 'cover' }}>
                         <div className="overlay"></div>
@@ -20,7 +20,7 @@ export class HomePageContainer extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div>
                                 <RegisterContainer
                                 />
                             </div>
@@ -28,8 +28,7 @@ export class HomePageContainer extends React.Component {
 
                     </div>
                 </div>
-            </React.Fragment>
+            </div>
         )
     }
-
 }

@@ -11,8 +11,9 @@ namespace BonniesDiner.Domain.Entity
         public string PasswordSalt { get; protected set; }
         public string PasswordHash { get; protected set; }
         public string Username { get; protected set; }
+        public bool IsAdmin { get; set; }
 
-        public UserEntity(string email, string passwordSalt, string passwordHash, string username)
+        public UserEntity(string email, string passwordSalt, string passwordHash, string username, bool isAdmin)
         {
             if (string.IsNullOrWhiteSpace(email))
                 throw new ArgumentException($"{nameof(Email)} required");
@@ -27,6 +28,7 @@ namespace BonniesDiner.Domain.Entity
             PasswordSalt = passwordSalt;
             PasswordHash = passwordHash;
             Username = username;
+            IsAdmin = isAdmin;
         }
 
         public void AddOrder(OrderEntity order)
