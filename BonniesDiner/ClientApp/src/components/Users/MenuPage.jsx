@@ -15,7 +15,6 @@ export class MenuPage extends React.Component {
                 MenuId: 0,
                 Quantity: 0
             },
-            itemsOrderedQty: {},
             itemsOrdered: {}
 
         }
@@ -76,50 +75,41 @@ export class MenuPage extends React.Component {
     }
     
 
-    postMenuItems() {
-        let payload = this.state.menuEntity;
-
-        fetch('/api/menu/register', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(payload)
-        })
-            .then(
-            this.setState({ menuEntity})
-            )
-            .catch((error) => {
-                console.log("error");
-            });
+    postMenuItems = () => {
+        let payload = [];
+        for (var item in this.state.itemsOrdered)
+        {
+            if (this.state.itemsOrdered[item] > 0)
+                payload.push({ MenuId: item, Quantity: this.state.itemsOrdered[item] })
+        }
+    //    fetch('/api/menu/register', {
+    //        headers: {
+    //            'Content-Type': 'application/json'
+    //        },
+    //        method: "POST",
+    //        body: JSON.stringify(payload)
+    //    })
+    //        .then(
+    //        this.setState({ menuEntity})
+    //        )
+    //        .catch((error) => {
+    //            console.log("error");
+    //        });
     }
 
     modalToggle() {
         this.setState({ successModal: !this.state.successModal });
     }
 
-    //successModal() {
-    //    let itemsOrdered = [];
-
-    //    for (var key in this.state.itemsOrdered) {
-    //        if (this.state.itemsOrdered[key] > 0)
-    //            itemsOrdered.push({ item: "sds"})
-    //    };
-        
-    //    return (
-    //    <div>
-    //            <h2 style={{ textAlign: "center" }}>Please confirm your order</h2>
-    //            <br />
-    //                <br />
-    //                <span style={{ paddingLeft: "10px" }}></span>
-    //                <Button
-    //                    className="btn btn-sm btn-success"
-    //                    onClick={this.getAllItems}
-    //                    label="Submit"
-    //                    disabled={false} />
-    //        </div>
-    //    );
-    //}
+    successModal() {
+        return (
+        <div>
+                <h2 style={{ textAlign: "center" }}>Thank you!</h2>
+                <br />
+                Your order has been placed!
+            </div>
+        );
+    }
 
     addItem = (id) => {
         let itemsOrdered = this.state.itemsOrdered;
@@ -135,39 +125,33 @@ export class MenuPage extends React.Component {
 
 
     render() {
-        let totalItems = [];
-        for (let i = 0; i < totalItems.length; i++) {
-            totalItems.push(this.state.itemsOrdered[i]);
-        }
         return (
             <div className="container">
-                <div className="col-md-8 col-md-offset-3">
+                <div className="col-md-10 col-md-offset-2">
                     <h2 style={{ textAlign: "center" }}>Bonnie's Vegan Cuisine</h2> <br />
-                    <div className="col-md-12 col-md-offset-2">
+                    <div>
                         <div>
-                            <h6 style={{ textAlign: "center" }}><strong>Appetizers<span className="pull-right">Quantity</span></strong></h6>
+                            <h6 style={{ textAlign: "center" }}><strong>Appetizers</strong></h6>
                             {this.state.appetizerArray.map((itm, index) => {
                                 return (
                                     <div key={index} className="row" style={{ paddingBottom: "30px" }}>
-                                        <div className="col-md-10">
+                                        <div className="col-md-8">
                                             <strong>{itm.itemName}</strong> <br />
                                             {itm.description} <strong>{itm.price}</strong>
                                         </div>
-                                        <div className="col-md-2 pull-right">
-                                            Qty:{this.state.itemsOrdered[itm.id]}
+                                        Qty:{this.state.itemsOrdered[itm.id]}
+                                        <div>
                                             <Button
-                                                className="btn btn-sm btn-primary pull-right"
+                                                className="btn btn-sm btn-primary"
                                                 onClick={() => this.addItem(itm.id)}
                                                 label="Add"
                                                 disabled={false} />
-                                        </div>
-                                        <div className="col-md-2">
                                             <Button
-                                                className="btn btn-sm btn-danger pull-right"
+                                                style={{paddingLeft: "5px"}}
+                                                className="btn btn-sm btn-danger"
                                                 onClick={() => this.removeItem(itm.id)}
                                                 label="Remove"
-                                                disabled={false} />
-                                        </div>
+                                                disabled={false} /></div>
                                     </div>
                                 )
                             })}
@@ -175,37 +159,35 @@ export class MenuPage extends React.Component {
                         </div>
                         <br />
                         <div>
-                            <h6 style={{ textAlign: "center" }}><strong>Entrees<span className="pull-right">Quantity</span></strong></h6>
+                            <h6 style={{ textAlign: "center" }}><strong>Entrees</strong></h6>
                             {this.state.entreeArray.map((itm, entree) => {
                                 return (
                                     <div key={entree} className="row" style={{ paddingBottom: "30px" }}>
-                                        <div className="col-md-10">
+                                        <div className="col-md-8">
                                             <strong>{itm.itemName}</strong>
                                             <br />
                                             {itm.description} <strong>{itm.price}</strong>
                                         </div>
-                                        <div className="col-md-2 pull-right">
-                                            Qty:{this.state.itemsOrdered[itm.id]}
+                                        Qty:{this.state.itemsOrdered[itm.id]}
+                                        <div>
                                             <Button
-                                                className="btn btn-sm btn-primary pull-right"
+                                                className="btn btn-sm btn-primary"
                                                 onClick={() => this.addItem(itm.id)}
                                                 label="Add"
                                                 disabled={false} />
-                                        </div>
-                                        <div className="col-md-2 pull-right">
                                             <Button
-                                                className="btn btn-sm btn-danger pull-right"
+                                                style={{ paddingLeft: "5px" }}
+                                                className="btn btn-sm btn-danger"
                                                 onClick={() => this.removeItem(itm.id)}
                                                 label="Remove"
-                                                disabled={false} />
-                                        </div>
+                                                disabled={false} /></div>
                                     </div>
                                 )
                             })}
                         </div>
                         <br />
                         <div>
-                            <h6 style={{ textAlign: "center" }}><strong>Dessert<span className="pull-right">Quantity</span></strong></h6>
+                            <h6 style={{ textAlign: "center" }}><strong>Dessert</strong></h6>
                             {this.state.dessertArray.map((itm, dessert) => {
                                 return (
                                     <div key={dessert} className="row" style={{ paddingBottom: "30px" }}>
@@ -214,37 +196,34 @@ export class MenuPage extends React.Component {
                                         <br />
                                         {itm.description} <strong>{itm.price}</strong>
                                         </div>
-                                        <div className="col-md-2 pull-right">
-                                            Qty:{this.state.itemsOrdered[itm.id]}
+                                        Qty:{this.state.itemsOrdered[itm.id]}
+                                        <div>
                                             <Button
-                                                className="btn btn-sm btn-primary pull-right"
+                                                className="btn btn-sm btn-primary"
                                                 onClick={() => this.addItem(itm.id)}
                                                 label="Add"
                                                 disabled={false} />
-                                        </div>
-                                        <div className="col-md-2">
                                             <Button
-                                                className="btn btn-sm btn-danger pull-right"
+                                                style={{ paddingLeft: "5px" }}
+                                                className="btn btn-sm btn-danger"
                                                 onClick={() => this.removeItem(itm.id)}
                                                 label="Remove"
-                                                disabled={false} />
-                                        </div>
+                                                disabled={false} /></div>
                                     </div>
                                 )
                             })}
                         </div>
-                        Total: {totalItems}
                         <div>
                             <Button
                                 className="btn btn-sm btn-success pull-right"
-                                onClick={this.modalToggle}
+                                onClick={this.postMenuItems}
                                 label="Submit"
                                 disabled={false} />
-                            {/*  <ModalWindow
+                             <ModalWindow
                                 showModal={this.state.successModal}
                                 onClose={this.modalToggle}>
                                 {this.successModal()}
-                            </ModalWindow>*/}
+                            </ModalWindow>
                         </div>
                     </div>
                 </div>
