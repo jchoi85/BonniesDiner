@@ -16,9 +16,9 @@ namespace BonniesDiner.Controllers
     public class OrderController : Controller
     {
         private readonly DinerContext _dinerContext;
-        private readonly EmailService _emailService;
+        private readonly IEmailService _emailService;
 
-        public OrderController(DinerContext dinerContext, EmailService emailService)
+        public OrderController(DinerContext dinerContext, IEmailService emailService)
         {
             _dinerContext = dinerContext;
             _emailService = emailService;
@@ -52,6 +52,18 @@ namespace BonniesDiner.Controllers
             _emailService.Send(email);
             return true;
         }
+        [HttpGet("[action]")]
+        public bool Test()
+        {
+            EmailMessage email = new EmailMessage();
+            email.ToAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
+            email.Subject = "TEST";
+            email.Content = "TEST";
+            email.FromAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
+
+            _emailService.Send(email);
+            return true;
+        }
         [HttpGet("[action]/{orderId}")]
         public bool CancelOrder(int orderId)
         {
@@ -65,6 +77,7 @@ namespace BonniesDiner.Controllers
 
             return true;
         }
+
         //testing CsvHelper
     //    [Route("csvfile"), HttpGet]
     //    public string GetCsv()

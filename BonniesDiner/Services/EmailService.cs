@@ -47,7 +47,7 @@ namespace BonniesDiner.Services
             using (var emailClient = new SmtpClient())
             {
                 //The last parameter here is to use SSL (Which you should!)
-                emailClient.Connect(_emailConfiguration.SmtpServer, _emailConfiguration.SmtpPort, true);
+                emailClient.Connect(_emailConfiguration.SmtpServer, _emailConfiguration.SmtpPort, false);
 
                 //Remove any OAuth functionality as we won't be using it. 
                 emailClient.AuthenticationMechanisms.Remove("XOAUTH2");
