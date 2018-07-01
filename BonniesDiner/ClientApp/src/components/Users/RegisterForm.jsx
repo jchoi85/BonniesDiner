@@ -5,13 +5,12 @@ import { Button, Input, Checkbox } from "../../common/components/index";
 export const RegisterForm = (props) => {
 
     return (
-        <div className="container">
             <div>
                 <div style={{ textAlign: "center", color: "white" }}>
                     <h3 style={{ color: "white" }}>Signup</h3>
                 </div>
                 <br/>
-                <form id="form" className="col-md-8 col-md-offset-3" style={{ color: "white" }}>
+                <form id="form" className="col-md-12 col-md-offset-3" style={{ color: "white" }}>
                     <Input
                         label="Name"
                         type="text"
@@ -50,6 +49,5 @@ export const RegisterForm = (props) => {
                     </div>
                 </form>
             </div>
-        </div>
     );
 }
