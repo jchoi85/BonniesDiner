@@ -27,7 +27,7 @@ export class Layout extends React.Component{
                                     <ul style={{ color: "white" }}>
                                         <li className="active"><a href="#home"><i className="ion-home"></i>Home</a></li>
                                         <li className="active"><a href="/blogs"><i className="ion-document-text"></i>Blog</a></li>
-                                        <li className="active"><a href="#contact"><i></i>Login</a></li>
+                                        <li className="active"><a href="/login">Login</a></li>
                                     </ul>
                                 </div>
                             </div>

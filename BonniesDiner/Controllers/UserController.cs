@@ -38,7 +38,7 @@ namespace BonniesDiner.Controllers
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8));
 
-            UserEntity user = new UserEntity(register.Email, salt.ToString(), hashed, register.Username);
+            UserEntity user = new UserEntity(register.Email, salt.ToString(), hashed, register.Username, register.IsAdmin);
 
             _dinerContext.Add(user);
             _dinerContext.SaveChanges();

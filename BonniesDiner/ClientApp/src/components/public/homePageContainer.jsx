@@ -20,7 +20,7 @@ export class HomePageContainer extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div>
                                 <RegisterContainer
                                 />
                             </div>

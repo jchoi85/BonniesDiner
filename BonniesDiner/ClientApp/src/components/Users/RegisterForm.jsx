@@ -1,16 +1,16 @@
 ﻿
 import * as React from "react";
-import { Button, Input } from "../../common/components/index";
+import { Button, Input, Checkbox } from "../../common/components/index";
 
 export const RegisterForm = (props) => {
 
     return (
         <div className="container">
             <div>
-                <div style={{ marginLeft: "90px" }}>
+                <div style={{ textAlign: "center" }}>
                     <h3>Signup</h3>
                 </div>
-                <form id="form">
+                <form id="form" className="col-md-6 col-md-offset-3">
                     <Input
                         label="Name"
                         type="text"
@@ -33,7 +33,13 @@ export const RegisterForm = (props) => {
                         onChange={props.onChange}
                         placeholder="Password"
                     />
-                    <div style={{ marginLeft: "90px" }}>
+                    <Checkbox
+                        onCheck={props.onCheck}
+                        label="Admin"
+                        name="IsAdmin"
+                        checked={props.registerEntity.IsAdmin}
+                    />
+                    <div style={{ textAlign: "center" }}>
                         <Button
                             label="Submit"
                             className="an-btn-small"
