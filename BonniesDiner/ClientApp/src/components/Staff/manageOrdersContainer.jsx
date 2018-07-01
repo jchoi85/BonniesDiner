@@ -34,7 +34,6 @@ export class ManageOrdersContainer extends React.Component {
             .then(response => {
                 if (response.ok) {
                     response.json().then(json => {
-                        console.log(json);
                         this.setState({
                             orders: json
                         })
@@ -43,7 +42,6 @@ export class ManageOrdersContainer extends React.Component {
                 }
             })
             .catch(function (error) {
-                console.log("error");
             });
     }
 
@@ -54,19 +52,35 @@ export class ManageOrdersContainer extends React.Component {
             backgroundColor: '	#F5F5F5'
            
         }
-   
+        var btnColor = {
+            backgroundColor: '#931212', 
+            color: '#ffffff', 
+            fontWeight: 'bold', 
+            fontFamily: 'Helvetica'
+        }
+        var fulfillColor = {
+            backgroundColor: '#00762C',
+            color: '#ffffff',
+            fontWeight: 'bold',
+            fontFamily: 'Helvetica'
+
+        }
+        var font = {
+            fontFamily: 'Helvetica'
+
+        }
         return (
       
             <div style={body} className="container col-md-9 col-sm-9 col-lg-9 col-md-offset-1">
 
-                            <table className='table box-content'>
+                <table className='table box-content' >
                                 <thead>
                                     <tr>
-                            <th>Order Id</th>
-                            <th>Order Total</th>
-                            <th> Order Created </th>
-                                        <th>Fulfill</th>
-                                        <th>Cancel</th>
+                            <th style={font}>Order Id</th>
+                            <th style={font}>Order Total</th>
+                            <th style={font}> Order Created </th>
+                            <th style={font}>Fulfill</th>
+                            <th style={font}>Cancel</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,18 +88,18 @@ export class ManageOrdersContainer extends React.Component {
 
                             return (
                                 <tr key={ndx}>
-                                <td>{order.id}</td>
-                                    <td>{order.orderTotal}</td>
+                                    <td style={font}>{order.id}</td>
+                                    <td style={font}>{order.orderTotal}</td>
                                    
-                                    <td>{order.statusNew.toUTCString()}</td>
-                                    <td><button className="btn btn-success" onClick={() => {
+                                    <td style={font}>{order.statusNew}</td>
+                                    <td style={font}><button className="btn" style={fulfillColor}  onClick={() => {
                                         this.fulfillOrder(order.id);
                                       
                                     }}>
                             Fulfill
                          </button>
                                 </td>
-                                    <td><button className="btn btn-danger" onClick={() => {
+                                    <td style={font}><button className="btn btn-danger" style={btnColor} onClick={() => {
                                         this.cancelOrder(order.id);
 
                                     }}>
