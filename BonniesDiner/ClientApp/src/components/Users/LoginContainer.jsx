@@ -26,7 +26,6 @@ export class LoginContainer extends React.Component{
 
      onFieldChange(fieldName, fieldValue) {
         const nextState = {
-            //...this.state,
             loginEntity: {
                 ...this.state.loginEntity,
                 [fieldName]: fieldValue
@@ -46,8 +45,8 @@ export class LoginContainer extends React.Component{
         let payload = this.state.loginEntity;
 
 	    this.Auth.login(payload.email, payload.password)
-			.then(response => 
-				console.log(response)
+            .then(response => 
+                console.log(response)
                 //browserHistory.push("menuPage")
             )
             .catch((error) => {

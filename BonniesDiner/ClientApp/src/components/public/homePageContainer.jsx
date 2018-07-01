@@ -3,6 +3,7 @@ import { RegisterContainer } from "../Users/RegisterContainer"
 
 
 export const HomePageContainer = () => (
+
     <div className="banner-section">
         <div className="an-home-img-container" style={{ background: "url('https://www.hanoibackpackershotel.com/wp-content/uploads/2017/06/vegetarian_restaurants.jpg') center center no-repeat", backgroundSize: 'cover' }}>
             <div className="overlay"></div>

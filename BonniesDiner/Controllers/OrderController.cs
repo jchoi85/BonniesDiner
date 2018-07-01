@@ -59,8 +59,8 @@ namespace BonniesDiner.Controllers
         {
             EmailMessage email = new EmailMessage();
             email.ToAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
-            email.Subject = "TEST";
-            email.Content = "TEST";
+            email.Subject = "Order From Bonnie's Diner";
+            email.Content = "Thank you for your Purchase! Items will be ready in 15 minutes.";
             email.FromAddresses.Add(new EmailAddress { Address = "pssok88@gmail.com", Name = "Patric Sok" });
 
             _emailService.Send(email);
