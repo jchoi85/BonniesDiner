@@ -7,10 +7,11 @@ export const RegisterForm = (props) => {
     return (
         <div className="container">
             <div>
-                <div style={{ textAlign: "center" }}>
-                    <h3>Signup</h3>
+                <div style={{ textAlign: "center", color: "white" }}>
+                    <h3 style={{ color: "white" }}>Signup</h3>
                 </div>
-                <form id="form" className="col-md-6 col-md-offset-3">
+                <br/>
+                <form id="form" className="col-md-8 col-md-offset-3" style={{ color: "white" }}>
                     <Input
                         label="Name"
                         type="text"
