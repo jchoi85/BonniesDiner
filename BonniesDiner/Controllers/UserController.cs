@@ -20,7 +20,7 @@ namespace BonniesDiner.Controllers
         {
             _dinerContext = dinerContext;
         }
-        [HttpGet("[action]")]
+        [HttpPost("[action]")]
         public void Register(RegisterEntity register)
         {
             // generate a 128-bit salt using a secure PRNG

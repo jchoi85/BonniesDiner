@@ -10,7 +10,8 @@ export class Layout extends React.Component{
                     <header className="an-header">
                         <nav className="navbar navbar-default navbar-fixed-top" style={{
                             background: "#2c353a",
-                            borderBottom: "1px solid #161b1d"
+                            borderBottom: "1px solid #161b1d",
+                            width: "200px"
                         }}>
                             <div className="container">
                                 <div className="navbar-header">
@@ -20,7 +21,7 @@ export class Layout extends React.Component{
                                         <span className="icon-bar"></span>
                                         <span className="icon-bar"></span>
                                     </button>
-                                    <a className="navbar-brand" href="/">Hobbyist</a>
+                                    <a className="navbar-brand" href="/">Bonnie's Diner</a>
                                 </div>
                                 <div>
                                     <ul style={{ color: "white" }}>

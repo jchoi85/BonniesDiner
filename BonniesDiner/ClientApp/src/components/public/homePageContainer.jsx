@@ -5,14 +5,15 @@ export class HomePageContainer extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="banner-section">
+                <div className="banner-section" style={{ marginLeft: "200px" }}>
                     <div className="an-home-img-container" style={{ background: "url('./Content/assets/img/creative-craft.jpg') center center no-repeat", backgroundSize: 'cover' }}>
                         <div className="overlay"></div>
                         <div className="home-banner-content">
                             <div className="col-md-8" style={{ paddingTop: "100px" }}>
                                 <div className="container">
                                     <div className="col-md-8">
-                                        <h1 className="wow fadeInDown" style={{ visibility: "visible", animationName: "fadeInDown" }}>Better <span>Professionals</span> are waiting for <b>you</b> to consult.</h1>
+                                        <h1 style={{ textAlign: "center" }}>Bonnie's Famous Vegan Diner</h1>
+                                        <h3 className="wow fadeInDown" style={{ visibility: "visible", animationName: "fadeInDown" }}>Bonnie's Famous Diner is known for excellent dishes created by autonomous chefs.  With advanced robotics, almost everything in the restaurant is operated by machines - cooking, serving, and cleaning.  The remaining manual element is the ordering process.</h3>
                                         <p className="wow fadeInUp" style={{ visibility: "visible", animationName: "fadeInUp" }}>We are the creative agency company to help your business grow.</p>
                                         <button className="an-btn an-btn-default btn-big wow fadeIn" style={{ visibility: "hidden", animationName: "none" }}>Check Out Today's Build!</button>
                                     </div>
