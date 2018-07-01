@@ -12,15 +12,10 @@ export class Layout extends React.Component {
 
     componentDidMount() {
 
-        if (this.Auth.loggedIn()) {
-        if (this.Auth.getProfile().IsAdmin) {
-            this.setState({
-                isAdmin: true
-            })
-        }
+
     }
        
-    }
+    
 
     render() {
         return (
@@ -45,8 +40,10 @@ export class Layout extends React.Component {
                                     <ul className="nav navbar-nav">
                                         <li className="active"><a href="/"><i className="ion-home"></i>Home</a></li>
                                         <li className="active"><a href="/menupage"><i className="ion-document-text"></i>Menu</a></li>
-                                        <li className="active"><a href="/login"><i></i>Login</a></li>
-                                        {this.state.isAdmin ? <li className="active"><a href="/manageorders"><i></i>Manage</a></li> : ""}
+                                        <li className="active"><a href="/manageorders"><i></i>Manage</a></li>
+
+										<li className="active"><a href="/login"><i></i>Login</a></li>
+	                                    <li className="active"><a href="/logout"><i></i>Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

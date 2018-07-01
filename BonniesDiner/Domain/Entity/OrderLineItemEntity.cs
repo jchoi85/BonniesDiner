@@ -7,6 +7,8 @@ namespace BonniesDiner.Domain.Entity
         public int Id { get;  set; }
         public MenuEntity Item { get; set; }
         public int Quantity { get;  set; }
+        public int OrderEntityId { get; set; }
+        public int ItemId { get; set; }
 
         public OrderLineItemEntity()
         {
