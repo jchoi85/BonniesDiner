@@ -46,8 +46,8 @@ export class LoginContainer extends React.Component{
 
 	    this.Auth.login(payload.email, payload.password)
             .then(response => 
-                console.log(response)
-                //browserHistory.push("menuPage")
+                //console.log(response)
+                browserHistory.push("menuPage")
             )
             .catch((error) => {
                 console.log(error);
