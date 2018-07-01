@@ -1,15 +1,32 @@
 import * as React from "react";
+import AuthService from "../services/authService";
+
 export class Layout extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isAdmin: false
+        };
+        this.Auth = new AuthService();
+    }
 
     componentDidMount() {
 
+        if (this.Auth.loggedIn()) {
+        if (this.Auth.getProfile().IsAdmin) {
+            this.setState({
+                isAdmin: true
+            })
+        }
+    }
+       
     }
 
     render() {
         return (
             <React.Fragment>
                 <div className="an-home-section" id="home">
-                    <header className="an-header" style={{ position: "fixed", zIndex : "1000" }}>
+                    <header className="an-header" style={{ position: "fixed", zIndex: "1000" }}>
                         <nav className="navbar-default" style={{
                             background: "#2c353a",
                             borderBottom: "1px solid #161b1d"
@@ -29,6 +46,7 @@ export class Layout extends React.Component {
                                         <li className="active"><a href="/"><i className="ion-home"></i>Home</a></li>
                                         <li className="active"><a href="/menupage"><i className="ion-document-text"></i>Menu</a></li>
                                         <li className="active"><a href="/login"><i></i>Login</a></li>
+                                        {this.state.isAdmin ? <li className="active"><a href="/manageorders"><i></i>Manage</a></li> : ""}
                                     </ul>
                                 </div>
                             </div>
@@ -36,14 +54,14 @@ export class Layout extends React.Component {
                     </header>
 
 
-                    <div style={{ width: "100%", minHeight: "100vh", paddingTop : "50px" }}>
+                    <div style={{ width: "100%", minHeight: "100vh", paddingTop: "50px" }}>
                         <div className="">
                             {this.props.children}
                         </div>
                     </div>
 
 
-                    <footer className="an-footer" style={{ position: "fixed", height: "10px", width : "100%" }}>
+                    <footer className="an-footer" style={{ position: "fixed", height: "10px", width: "100%" }}>
 
                     </footer>
                 </div>
