@@ -57,8 +57,6 @@ namespace BonniesDiner.Controllers
         {
             UserEntity user = _dinerContext.User.FirstOrDefault(x => x.Email == login.Email);
 
-            var usernameeee = User.Identity.Name;
-
             if (user == null) return BadRequest();
 
             // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
