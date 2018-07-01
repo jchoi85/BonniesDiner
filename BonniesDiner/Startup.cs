@@ -61,7 +61,7 @@ namespace BonniesDiner
                 MenuEntity item = db.Menu.FirstOrDefault(x => x.ItemName != null);
                 if (item == null) menuService.Load(db);
             }
-            catch
+            catch(Exception e)
             {
                 throw new Exception("Error creating menu");
             }
