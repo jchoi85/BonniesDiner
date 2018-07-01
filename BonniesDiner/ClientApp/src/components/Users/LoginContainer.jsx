@@ -57,7 +57,7 @@ export class LoginContainer extends React.Component{
     
      render() {
          return (
-             <div className="col-md-6 col-md-offset-3" style={{ marginLeft: "200px" }}>
+             <div className="col-md-6 col-md-offset-3" style={{ marginLeft: "250px", paddingTop : "150px" }}>
                 <LoginForm
                     onChange={this.onFieldChange}
                     loginEntity={this.state.loginEntity}

@@ -4,6 +4,8 @@ import { Button, Input } from "../../common/components/index";
 
 export const LoginForm = (props) => {
     return (
+        <div className="col-md-offset-2" style={{ background: "url('http://backgroundcheckall.com/wp-content/uploads/2017/12/vegan-background-12.jpg') center center no-repeat", backgroundSize: 'cover' }}>
+            <div >
         <form className="tg-loginform" method="post">
             <fieldset>
                 <div className="form-group">
@@ -37,7 +39,9 @@ export const LoginForm = (props) => {
                     <p>Don't have an account? <a href="/#home">Signup</a></p>
                 </div>
             </fieldset>
-        </form>
+                </form>
+            </div>
+        </div>
     )
 };
 
