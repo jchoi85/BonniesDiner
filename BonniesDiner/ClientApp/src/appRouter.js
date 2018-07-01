@@ -6,6 +6,8 @@ import { LoginContainer } from './components/Users/LoginContainer';
 import { MenuPage } from "./components/Users/MenuPage";
 import { Layout } from "../src/components/Layout";
 import { ViewReportsContainer } from "../src/components/Staff/ViewReportsContainer";
+import { ManageOrdersContainer } from './components/Staff/manageOrdersContainer';
+import { OrderStatusContainer } from './components/Staff/orderStatusContainer';
 
 export const AppRouter = () => {
     return (
@@ -14,6 +16,8 @@ export const AppRouter = () => {
                 <IndexRoute component={HomePageContainer} />
                 <Route path="login" component={LoginContainer} />
                 <Route path="menupage" component={MenuPage} />
+                <Route path="manageorders" component={ManageOrdersContainer} />
+                <Route path="orderstatus" component={OrderStatusContainer} />
                 <Route path="ViewReports" component={ViewReportsContainer} />
             </Route>
         </Router>
