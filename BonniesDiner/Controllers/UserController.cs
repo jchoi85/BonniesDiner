@@ -46,19 +46,19 @@ namespace BonniesDiner.Controllers
             _dinerContext.Add(user);
             _dinerContext.SaveChanges();
         }
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody]RegisterEntity model)
-        {
-            var userIdentity = _mapper.Map(model);
+        //[HttpPost]
+        //public async Task<IActionResult> Post([FromBody]RegisterEntity model)
+        //{
+        //    var userIdentity = _mapper.Map(model);
 
-            var result = await _userManager.CreateAsync(userIdentity, model.Password);
+        //    var result = await _userManager.CreateAsync(userIdentity, model.Password);
 
-            if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
+        //    if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-            await _appDbContext.Customers.AddAsync(new Customer { IdentityId = userIdentity.Id, Location = model.Location });
-            await _appDbContext.SaveChangesAsync();
+        //    await _appDbContext.Customers.AddAsync(new Customer { IdentityId = userIdentity.Id, Location = model.Location });
+        //    await _appDbContext.SaveChangesAsync();
 
-            return new OkObjectResult("Account created");
-        }
+        //    return new OkObjectResult("Account created");
+        //}
     }
 }
