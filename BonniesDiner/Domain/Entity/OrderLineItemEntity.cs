@@ -4,9 +4,13 @@ namespace BonniesDiner.Domain.Entity
 {
     public class OrderLineItemEntity
     {
-        public int Id { get; protected set; }
-        public MenuEntity Item { get; protected set; }
-        public int Quantity { get; protected set; }
+        public int Id { get;  set; }
+        public MenuEntity Item { get; set; }
+        public int Quantity { get;  set; }
+
+        public OrderLineItemEntity()
+        {
+        }
 
         public OrderLineItemEntity(int quantity)
         {

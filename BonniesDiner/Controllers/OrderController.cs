@@ -58,47 +58,33 @@ namespace BonniesDiner.Controllers
 
             return true;
         }
-        //testing CsvHelper
-    //    [Route("csvfile"), HttpGet]
-    //    public string GetCsv()
-    //    {
-    //        try
-    //        {
-    //            //if (!ModelState.IsValid) { return BadRequest(ModelState); }
+        [HttpGet("[action]/{orderId}")]
+        public bool CreateOrder(CreateOrderEntity order)
+        {
+            List<OrderLineItemEntity> items = new List<OrderLineItemEntity>();
 
-    //            string newfilename = "BonniesDinerOrderDetails.csv";
-    //            //result = WriteRecords();
+            UserEntity currentUser = _dinerContext.User.FirstOrDefault(x => x.Email == User.Identity.Name);
 
-    //            List<OrderEntity> allrows = GetAllOrders();
+            decimal total = 0m;
 
-    //            using (var memoryStream = new MemoryStream())
-    //            using (var streamWriter = new StreamWriter(memoryStream))
-    //            using (var csv = new CsvWriter(streamWriter))
-    //            {
+            foreach (CreateOrderMenuItem item in order.MenuItems)
+            {
+                MenuEntity menuItem = _dinerContext.Menu.FirstOrDefault(x => x.Id == item.MenuId);
+                items.Add(new OrderLineItemEntity {Item = menuItem, Quantity = item.Quantity});
+                total += menuItem.Price;
+            }
 
-    //                csv.WriteRecords(allrows);
-    //                streamWriter.Flush();
+            OrderEntity newOrder = new OrderEntity
+            {
+                LineItems = items,
+                StatusNew = DateTime.Now,
+                OrderTotal = total
+            };
 
-    //                MemoryStream ms = new MemoryStream(memoryStream.ToArray());
+            currentUser.AddOrder(newOrder);
+            _dinerContext.SaveChanges();
 
-    //                HttpContext.Response.Clear();
-    //               // HttpContext.Response.BufferOutput = true;
-    //                HttpContext.Response.ContentType = "text/csv";
-    //                HttpContext.Response.AddHeader("content-disposition", "attachment; filename=" + newfilename);
-    //                ms.WriteTo(HttpContext.Response.OutputStream);
-    //                HttpContext.Response.Flush();
-    //                HttpContext.Response.End();
-
-    //                return Ok(new SuccessResponse());
-    //            }
-
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            return BadRequest(ex.Message);
-    //        }
-    //    }
+            return true;
+        }
     }
-
-
 }
