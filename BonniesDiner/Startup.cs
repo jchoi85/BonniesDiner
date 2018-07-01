@@ -39,6 +39,11 @@ namespace BonniesDiner
                     x.UseSqlServer(Configuration.GetConnectionString("localDb"));
                 });
 
+            //services.AddDbContext<IdentityContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("localDb"),
+            //        b => b.MigrationsAssembly("BonniesDiner")));
+
+
             services.AddSingleton<CreateMenuService>();
         }
 

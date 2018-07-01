@@ -7,6 +7,7 @@ using BonniesDiner.Data;
 using BonniesDiner.Domain.Entity;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BonniesDiner.Controllers
@@ -15,13 +16,15 @@ namespace BonniesDiner.Controllers
     public class UserController : Controller
     {
         private readonly DinerContext _dinerContext;
+        private readonly UserManager<AppUser> _userManager;
 
-        public UserController(DinerContext dinerContext)
+        public UserController(DinerContext dinerContext, UserManager<AppUser> userManager)
         {
             _dinerContext = dinerContext;
+            _userManager = userManager;
         }
-        [HttpGet("[action]")]
-        public void Register(RegisterEntity register)
+        [HttpPost("[action]")]
+        public void Register([FromBody]RegisterEntity register)
         {
             // generate a 128-bit salt using a secure PRNG
             byte[] salt = new byte[128 / 8];
@@ -42,6 +45,20 @@ namespace BonniesDiner.Controllers
 
             _dinerContext.Add(user);
             _dinerContext.SaveChanges();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]RegisterEntity model)
+        {
+            var userIdentity = _mapper.Map(model);
+
+            var result = await _userManager.CreateAsync(userIdentity, model.Password);
+
+            if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
+
+            await _appDbContext.Customers.AddAsync(new Customer { IdentityId = userIdentity.Id, Location = model.Location });
+            await _appDbContext.SaveChangesAsync();
+
+            return new OkObjectResult("Account created");
         }
     }
 }
