@@ -17,6 +17,7 @@ export class MenuPage extends React.Component {
         this.getAllItems = this.getAllItems.bind(this);
         this.modalToggle = this.modalToggle.bind(this);
         this.errorModal = this.errorModal.bind(this);
+        this.errorToggle = this.errorToggle.bind(this);
         this.Auth = new AuthService();
     }
 
@@ -80,18 +81,20 @@ export class MenuPage extends React.Component {
             if (this.state.itemsOrdered[item] > 0)
                 payload.push({ MenuId: parseInt(item), Quantity: this.state.itemsOrdered[item] })
         }
-        this.Auth.fetch("/api/order/createorder", {
-            method: "POST",
-            body: JSON.stringify(payload)
-        })
-            .then(() =>
-                console.log("success"),
-                this.modalToggle()
-            )
-            .catch((error) => {
-                this.errorToggle();
-                console.log(error);
-            });
+        if (payload.length != 0) {
+            this.Auth.fetch("/api/order/createorder", {
+                method: "POST",
+                body: JSON.stringify(payload)
+            })
+                .then(() =>
+                    console.log("success"),
+                    this.modalToggle()
+                )
+                .catch((error) => {
+                    this.errorToggle(),
+                    console.log(error)
+                });
+        }
     }
 
     modalToggle() {
@@ -125,7 +128,7 @@ export class MenuPage extends React.Component {
     errorModal() {
         return (
             <div>
-                <h2 style={{ textAlign: "center", paddingBottom: "20px" }}>Oops! Something went wrong!</h2>
+                <h2 style={{ textAlign: "center", paddingBottom: "20px" }}>Please add an item to your cart</h2>
             </div>
         );
     }
