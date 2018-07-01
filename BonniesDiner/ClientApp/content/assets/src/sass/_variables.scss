@@ -1,0 +1,151 @@
+// Color Variables
+
+// Primary color
+$cyan        : #22d469;
+$cyan-dark   : darken($cyan, 10%);
+$cyan-darker : darken($cyan, 15%);
+
+
+// Header footer important content
+$dark-grayish-blue          : #2c353a;
+$dark-blue                  : darken($dark-grayish-blue, 10%);
+$dark-grayish-blue-light    : lighten($dark-grayish-blue, 10%);;
+$dark-grayish-blue-lieghter : lighten($dark-grayish-blue, 15%);;;
+
+
+// Content block background
+$light-grayish-cyan        : #e8eff0;
+$light-grayish-cyan-dark   : darken($light-grayish-cyan, 10%);
+$light-grayish-cyan-darker : darken($light-grayish-cyan, 15%);;
+
+
+// Accents color
+$soft-orange : #e17950;
+
+$white: #fff;
+
+
+// Category color
+$soft-magenta  : #ee56f0;
+$light-purple  : #af67ff;
+$strong-cyan   : #2aabcd;
+$bright-orange : #fda737;
+$orange        : #f27d00;
+$dark-orange   : #fd7037;
+$light-blue    : #358fff;
+$lime-green    : #48da89;
+
+
+// Fonts
+$ek-mukta          : 'Ek Mukta', sans-serif;
+$merriweather-sans : 'Merriweather Sans', sans-serif;
+$cabin             : 'Cabin', sans-serif;
+$lobster-two       : 'Lobster Two', cursive;
+
+$font-size-base : 16px;
+$font-size-h1   : 28px;
+$font-size-h2   : 23px;
+$font-size-h3   : 18px;
+$font-size-h4   : 11px;
+
+$font-weight-light  : 300;
+$font-weight-regular  : 400;
+$font-weight-medium   : 500;
+$font-weight-semibold : 600;
+$font-weight-bold     : 700;
+
+$line-height-base : 27px;
+$line-height-h1   : 33px;
+$line-height-h2   : 28px;
+$line-height-h3   : 23px;
+$line-height-h4   : 20px;
+
+// fonts family
+$font-family-primary : $ek-mukta;
+$font-family-secondary: $merriweather-sans;
+$font-family-quote: $cabin;
+$font-family-logo: $lobster-two;
+
+
+// Template colors
+$color-primary-dark       : $cyan-dark;
+$color-primary : $cyan;
+$color-primary-darker  : $cyan-darker;
+
+$color-secondary         : $dark-grayish-blue;
+$color-secondary-dark    : $dark-blue;
+$color-secondary-light   : $dark-grayish-blue-light;
+$color-secondary-lighter : $dark-grayish-blue-lieghter;
+
+$color-content-bg        : $light-grayish-cyan;
+$color-content-bg-dark    : $light-grayish-cyan-dark;
+$color-content-bg-darker : $light-grayish-cyan-darker;
+$color-content-bg-white  : $white;
+
+$color-accents: $soft-orange;
+
+
+// Category color
+$color-category-restaurants : $soft-magenta;
+$color-category-hotels      : $light-purple;
+$color-category-services    : $strong-cyan;
+$color-category-jobs        : $light-blue;
+$color-category-sales       : $lime-green;
+$color-category-properties  : $bright-orange;
+$color-category-pets        :  $orange;
+$color-category-motors      : $dark-orange;
+
+
+// Font color
+$font-color-base    : $color-secondary-dark;
+$font-color-light   : $color-secondary-light;
+$font-color-lighter : $color-secondary-lighter;
+$font-color-extra-light: $color-content-bg;
+
+$font-color-primary       : $color-primary;
+$font-color-primary-hover : $color-primary-dark;
+
+$font-color-white: $white;
+
+
+$color-black: #000;
+// Padding and margin
+$padding-base   : 15px;
+$padding-small  : 10px;
+$padding-medium : 20px;
+$padding-large  : 30px;
+
+$margin-base   : 15px;
+$margin-small  : 10px;
+$margin-medium : 20px;
+$margin-large  : 30px;
+
+
+
+// Misc variables
+$brand-height: 55px;
+$brand-height-mobile: 55px;
+$logo-width: 180px;
+
+$login-link-width: 35px;
+
+
+// input height
+$input-height: 40px;
+
+// border
+$border-radius: 3px;
+$btn-border-radius: 30px;
+
+// menu bread point
+$screen-menu-breakpoint : 991px;
+
+
+// Social media color code
+$an-facebook  : #3b5999;
+$an-twitter   : #55acee;
+$an-google    : #dd4b39;
+$an-dribble   : #ea4c89;
+$an-reddit   : #ff5700;
+$an-whatsapp   : #25D366;
+$an-pinterest : #bd081c;

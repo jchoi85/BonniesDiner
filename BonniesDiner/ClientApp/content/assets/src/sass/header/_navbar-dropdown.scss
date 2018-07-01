@@ -1,0 +1,61 @@
+@mixin dropdown() {
+  @media (max-width: $screen-menu-breakpoint) {
+    position: relative;
+    width: 100%;
+    background: darken($color-secondary, 5%);
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: $margin-base;
+    padding: 0;
+    border: 0;
+
+    li {
+      a {
+        padding: $padding-small - 3 $padding-base;
+        color: lighten($font-color-lighter, 15%) !important;
+        font-size: $font-size-base;
+        @include transition();
+
+        &:hover,
+        &:focus {
+          color: $font-color-white !important;
+          background: $color-primary !important;
+          padding-left: $padding-medium;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $screen-menu-breakpoint) {
+    @include border-radius($border-radius);
+    @include transition();
+    @include an-box-shadow();
+    background: $color-secondary;
+    border: 0;
+    min-width: 220px;
+    display: block;
+    top: 90%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+
+    li {
+      a {
+        padding: $padding-small - 3 $padding-base;
+        color: lighten($font-color-lighter, 15%);
+        font-size: $font-size-base;
+        @include transition();
+
+        &:hover,
+        &:focus {
+          color: $font-color-white;
+          background: $color-primary;
+          padding-left: $padding-medium;
+        }
+      }
+    }
+
+  }
+}

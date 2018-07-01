@@ -1,0 +1,41 @@
+.an-title-content {
+  position: relative;
+  width: 100%;
+  @extend .text-center;
+  padding-bottom: $padding-base * 3;
+
+  h1 {
+    position: relative;
+    z-index: 10;
+    font-size: $font-size-h1 + 14;
+    line-height: $font-size-h1 * 2 + 10;
+    @extend .text-uppercase;
+    color: $font-color-lighter;
+    margin: 0;
+
+    @media (max-width: $screen-xs) {
+      font-size: $font-size-h1;
+    }
+  }
+
+  .bg-text {
+    position: absolute;
+    top: 22px;
+    z-index: 8;
+    width: 100%;
+    color: $font-color-extra-light;
+    span {
+      font-size: $font-size-h1 * 4;
+    }
+  }
+
+  p {
+    font-size: $font-size-base + 4;
+    font-family: $font-family-quote;
+    font-style: italic;
+    padding-top: $padding-small;
+    max-width: 780px;
+    margin: 0 auto;
+    color: darken($font-color-extra-light, 20%);
+  }
+}

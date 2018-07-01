@@ -1,0 +1,67 @@
+@mixin navbar-right {
+  padding-top: $padding-medium + 3;
+
+  li {
+    border-right: 1px solid $color-secondary-light;
+    padding: 0 $padding-base;
+    @media (max-width: $screen-menu-breakpoint) {
+      border-right: 0;
+    }
+
+    &:last-child {
+      border-right: 0;
+      padding-right: $padding-small;
+    }
+    a {
+      &.an-btn {
+        padding: $padding-small - 5 $padding-medium;
+        color: $font-color-white;
+        i {
+          padding: 0;
+        }
+        @media (max-width: $screen-lg) and (min-width: $screen-menu-breakpoint){
+          width: $login-link-width;
+          height: $login-link-width;
+          line-height: $login-link-width - 4;
+          padding: 0;
+
+          span {
+            display: none;
+          }
+          i {
+            padding: 0;
+          }
+
+        }
+        &:hover {
+          background: $color-primary-dark;
+          border-color: $color-primary-dark;
+        }
+      }
+
+      &.sign-up-link {
+       @include circle-icon-link;
+       line-height: 30px;
+
+       span {
+         display: none;
+         font-size: $font-size-base - 2;
+       }
+
+       &:hover {
+         border-color: $color-primary;
+       }
+
+        @media (max-width: $screen-menu-breakpoint) {
+          width: 100%;
+          margin-top: $margin-base;
+          @include border-radius($btn-border-radius);
+
+          span {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}

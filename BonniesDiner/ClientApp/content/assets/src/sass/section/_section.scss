@@ -1,0 +1,12 @@
+.an-section {
+  position: relative;
+  width: 100%;
+  padding: $padding-base * 4 $padding-base * 2;
+  background: $color-content-bg-white;
+  @include border-radius(0);
+
+  &.bottom-border {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+}

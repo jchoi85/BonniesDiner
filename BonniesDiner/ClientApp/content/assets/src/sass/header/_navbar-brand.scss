@@ -1,0 +1,28 @@
+@mixin navbar-brand() {
+  padding: 0 $padding-base + 5;
+  height: $brand-height;
+  display: block;
+  line-height: $brand-height - 5;
+  color: $font-color-white;
+  font-size: 25px;;
+  &:hover {
+    color: $color-primary;
+  }
+
+  font-family: $font-family-logo;
+  @media (max-width: $screen-lg) {
+    margin-right: $margin-base + 5;
+  }
+  @media (max-width: $screen-menu-breakpoint) {
+    height: $brand-height-mobile;
+    line-height: $brand-height-mobile;
+  }
+  img {
+    width: $logo-width;
+    display: inline-block;
+
+    @media (max-width: $screen-lg) {
+      width: $logo-width - 40;
+    }
+  }
+}

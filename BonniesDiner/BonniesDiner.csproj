@@ -22,7 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\" />
+    <Folder Include="ClientApp\content\" />
+    <Folder Include="ClientApp\views\home\" />
+    <Folder Include="ClientApp\views\shared\" />
+    <Folder Include="ClientApp\views\public\" />
   </ItemGroup>
 
  <PropertyGroup>

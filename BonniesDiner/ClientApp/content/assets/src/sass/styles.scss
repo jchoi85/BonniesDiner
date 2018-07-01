@@ -1,0 +1,101 @@
+/*
+=============================================
+Table of content
+
+1. Scaffolding
+2. Typography
+3. Forms
+4. Buttons
+5. General style
+6. Utility classes
+7. Header
+8. Footer
+9. Home seciton
+10. Title
+11. Work section
+12. Sercives
+13. About us
+14. Pricing
+15. Blog
+16. Contact us
+
+=======================================
+ */
+
+
+// @import bootstrap
+@import './vendors/bootstrap/variables';
+@import './vendors/bootstrap/mixins';
+
+// @import mixins and custom variables files
+@import './mixins/mixins';
+@import 'variables';
+
+
+
+
+//  @import base  file for project initialization
+//   Scafolding
+//   typography
+//   forms
+
+@import 'base/scaffolding';
+@import 'base/typography';
+@import 'base/forms';
+@import 'base/main-wrapper';
+@import 'base/buttons';
+
+// Utility classes
+@import 'utility/utility-class';
+
+
+// Header
+@import 'header/header';
+@import 'header/navbar';
+@import 'header/navbar-mobile';
+
+
+// Footer
+@import 'footer/footer';
+@import 'footer/footer-top';
+@import 'footer/social-icons';
+@import 'footer/footer-bottom';
+
+
+// HOme section
+@import 'home-section/home-section';
+
+// title
+@import 'title/title';
+
+// section
+@import 'section/section';
+
+
+// Work section
+@import 'work-section/work-section';
+@import 'work-section/portfolio';
+
+// Service section
+@import 'service-section/services';
+
+// blog
+@import 'blog/blog';
+
+// Pricing
+@import 'pricing/price';
+
+// About us
+@import 'about-us/about';
+
+//  recent user sections
+@import 'about-us/recent-user/recent-user';
+@import 'about-us/recent-user/user-image';
+@import 'about-us/recent-user/social-info';
+
+
+@import 'testimonial/testimonial';
+
+
+// Contact us
+@import 'contact-us/contact-us';
