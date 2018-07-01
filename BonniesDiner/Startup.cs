@@ -3,6 +3,7 @@ using System.Linq;
 using BonniesDiner.Data;
 using BonniesDiner.Domain.Entity;
 using BonniesDiner.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,11 +40,6 @@ namespace BonniesDiner
                 {
                     x.UseSqlServer(Configuration.GetConnectionString("localDb"));
                 });
-
-            //services.AddDbContext<IdentityContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("localDb"),
-            //        b => b.MigrationsAssembly("BonniesDiner")));
-
 
             services.AddSingleton<CreateMenuService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

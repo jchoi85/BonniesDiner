@@ -46,7 +46,8 @@ export class LoginContainer extends React.Component{
 
         fetch('/api/user/login', {
             headers: {
-                'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				withCredentials: true 
             },
             method: "POST",
             body: JSON.stringify(payload)

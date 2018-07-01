@@ -64,7 +64,7 @@ namespace BonniesDiner.Controllers
 
             if (hashed == user.PasswordHash)
             {
-                Set("key", "value", 36000);
+                Set("LOGIN", "LOGGEDIN", 36000);
                 return true;
             }
 
