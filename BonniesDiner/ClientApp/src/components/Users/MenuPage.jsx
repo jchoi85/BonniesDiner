@@ -30,7 +30,8 @@ export class MenuPage extends React.Component {
             ...this.state,
             menuEntity: {
                 ...this.state.menuEntity,
-                [fieldName]: fieldValue
+                MenuItems: fieldName,
+                Quantity: fieldValue
             }
         }
         this.setState(nextState);
@@ -81,20 +82,29 @@ export class MenuPage extends React.Component {
         let entreesOrdered = [];
         let dessertsOrdered = [];
         for (let i = 0; i < this.state.appetizerArray.length; i++) {
-            appsOrdered.push(this.state.appetizerArray[i].itemName); 
+            if (this.state.menuEntity.MenuItems == this.state.appetizerArray[i].itemName) {
+                appsOrdered.push(this.state.appetizerArray[i].itemName);
+                appsOrdered.push(this.state.menuEntity.Quantity);
+            }
         }
-        for (let i = 0; i < this.state.entreeArray.length; i++) {
-            entreesOrdered.push(this.state.entreeArray[i].itemName);
-        }
-        for (let i = 0; i < this.state.dessertArray.length; i++) {
-            dessertsOrdered.push(this.state.dessertArray[i].itemName);
-        }
+        console.log(appsOrdered)
+        //for (let i = 0; i < this.state.entreeArray.length; i++) {
+        //    entreesOrdered.push(this.state.entreeArray[i].itemName);
+        //}
+        //for (let i = 0; i < this.state.dessertArray.length; i++) {
+        //    dessertsOrdered.push(this.state.dessertArray[i].itemName);
+        //}
         return (
             <div>
                 <h2 style={{ textAlign: "center" }}>Please confirm your order</h2>
                 <br />
                 <div style={{ float: "right" }}>
-                    <strong>{appsOrdered.join(", ")}</strong>
+                    <ol>
+                        {appsOrdered.map((itm, id) => {
+                            return (<li key={id}>{itm}x{itm.Quantity}</li>)
+                        })}
+                        
+                        </ol>
                     <br />
                     <strong>{entreesOrdered.join(", ")}</strong>
                     <br />
@@ -113,71 +123,84 @@ export class MenuPage extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container" style={{ marginTop: "100px" }}>
                 <div className="col-md-8 col-md-3-offset">
                     <h2 style={{ textAlign: "center" }}>Bonnie's Vegan Cuisine</h2> <br />
-                    <div className="col-md-5 col-md-offset-3">
+                    <div className="col-md-12 col-md-offset-2">
                         <div>
-                            <h6 style={{ textAlign: "center" }}><strong>Appetizers</strong></h6>
+                            <h6 style={{ textAlign: "center" }}><strong>Appetizers<span className="pull-right">Quantity</span></strong></h6>
                             {this.state.appetizerArray.map((itm, app) => {
                                 return (
-                                    <div key={app}>
-                                        <div>
+                                    <div key={app} className="row" style={{ paddingBottom: "30px" }}>
+                                        <div className="col-md-10">
                                             <strong>{itm.itemName}</strong> <br />
 
-                                            {itm.description} {itm.price}
+                                            {itm.description} <strong>{itm.price}</strong>
                                         </div>
-                                        <Input label=""
-                                            type="number"
-                                            name={itm.itemName}
-                                            onChange={this.onFieldChange}
-                                            placeholder=""
-                                        />
+                                        <div className="col-md-2 pull-right">
+                                            <Input label=""
+                                                type="number"
+                                                name={itm.itemName}
+                                                onChange={this.onFieldChange}
+                                                placeholder=""
+                                            />
+                                        </div>
+                                        <hr/>
                                     </div>
                                 )
                             })}
                         </div>
                         <br />
                         <div>
-                            <h6 style={{ textAlign: "center" }}><strong>Entrees</strong></h6>
+                            <h6 style={{ textAlign: "center" }}><strong>Entrees<span className="pull-right">Quantity</span></strong></h6>
                             {this.state.entreeArray.map((itm, entree) => {
                                 return (
-                                    <div key={entree}>
-                                        <strong>{itm.itemName}</strong>
-                                        <br />
-                                        {itm.description} {itm.price} <br />
-                                        <Input label=""
-                                            type="number"
-                                            name={itm.itemName}
-                                            onChange={this.onFieldChange}
-                                            placeholder=""
-                                        />
+                                    <div key={entree} className="row" style={{ paddingBottom: "30px" }}>
+                                        <div className="col-md-10">
+                                            <strong>{itm.itemName}</strong>
+                                            <br />
+                                            {itm.description} <strong>{itm.price}</strong>
+                                        </div>
+                                        <div className="col-md-2 pull-right">
+                                            <Input label=""
+                                                type="number"
+                                                name={itm.itemName}
+                                                onChange={this.onFieldChange}
+                                                placeholder=""
+                                            />
+                                        </div>
+                                        <hr/>
                                     </div>
                                 )
                             })}
                         </div>
                         <br />
                         <div>
-                            <h6 style={{ textAlign: "center" }}><strong>Dessert</strong></h6>
+                            <h6 style={{ textAlign: "center" }}><strong>Dessert<span className="pull-right">Quantity</span></strong></h6>
                             {this.state.dessertArray.map((itm, dessert) => {
                                 return (
-                                    <div key={dessert}>
+                                    <div key={dessert} className="row" style={{ paddingBottom: "30px" }}>
+                                        <div className="col-md-8">
                                         <strong>{itm.itemName}</strong>
                                         <br />
-                                        {itm.description} {itm.price}
+                                        {itm.description} <strong>{itm.price}</strong>
+                                        </div>
+                                        <div className="col-md-2 pull-right">
                                         <Input label=""
                                             type="number"
                                             name={itm.itemName}
                                             onChange={this.onFieldChange}
                                             placeholder=""
-                                        />
+                                            />
+                                        </div>
+                                        <hr/>
                                     </div>
                                 )
                             })}
                         </div>
                         <div>
                             <Button
-                                className="btn btn-sm btn-success"
+                                className="btn btn-sm btn-success pull-right"
                                 onClick={this.modalToggle}
                                 label="Submit"
                                 disabled={false} />
