@@ -37,7 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\Components\Staff\" />
     <Folder Include="ClientApp\src\api\" />
   </ItemGroup>
 
