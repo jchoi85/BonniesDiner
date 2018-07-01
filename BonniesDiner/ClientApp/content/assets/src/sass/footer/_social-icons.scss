@@ -1,0 +1,16 @@
+.an-social-icons {
+  @extend .list-inline;
+
+  li {
+    margin-right: $margin-small - 4;
+    a {
+      @include circle-icon-link;
+      color: $color-primary;
+      &:hover {
+        color: $font-color-white;
+        background: $color-primary;
+        border-color: $color-primary;
+      }
+    }
+  }
+}

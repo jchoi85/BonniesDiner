@@ -1,0 +1,67 @@
+.an-recent-users {
+  position: relative;
+  width: 100%;
+  padding: $padding-small;
+  @include display(flex);
+  @include flex-wrap(wrap);
+
+
+
+  .an-single-user-main-body {
+    width: 50%;
+    padding: $padding-small - 5;
+
+    @media (max-width: $screen-xs) {
+      width: 100%;
+    }
+  }
+
+}
+
+.an-user-single {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: lighten($color-content-bg, 4%);
+  margin-bottom: $margin-small - 5;
+  @extend .text-center;
+  @include border-radius($border-radius);
+
+  &:hover {
+    .social-info {
+      left: 0;
+    }
+  }
+
+  .profile-details {
+    position: relative;
+    padding: $padding-small;
+    padding-top: 0;
+
+    h4 {
+      margin: 0;
+      padding-bottom: $padding-small - 5;
+      @include text-overflow;
+      @extend .text-uppercase;
+      font-size: $font-size-h3;
+    }
+    .location {
+      i {
+        color: $font-color-base;
+        padding-right: $padding-small - 5;
+      }
+      a {
+        color: $font-color-lighter;
+        &:hover {
+          color: $font-color-base;
+          text-decoration: underline;
+        }
+      }
+    }
+    .short-desc {
+      color: lighten($font-color-light, 10%);
+      font-weight: normal;
+    }
+  }
+
+}

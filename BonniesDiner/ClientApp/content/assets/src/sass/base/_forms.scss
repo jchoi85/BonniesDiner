@@ -1,0 +1,59 @@
+.an-form {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  .btn-submit-full {
+    position: absolute;
+    right: 0;
+    top: 0;
+    @include border-radius(0);
+    width: $input-height;
+    height: $input-height;
+    padding: 0;
+    Background: $color-primary;
+    color: $font-color-white;
+    font-size: $font-size-base + 4;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    outline: 0;
+    border: 0;
+    &:focus,
+    &:active {
+      outline: 0 !important;
+      border: 0;
+      color: $font-color-white;
+      box-shadow: none;
+    }
+
+  }
+}
+
+.an-form-control {
+  position: relative;
+  width: 100%;
+  height: $input-height;
+  background: lighten($color-content-bg, 4%);
+  outline: 0;
+  padding: $padding-small - 5 $padding-base;
+  @include border(lighten($color-content-bg, 1%));
+  @include border-radius($border-radius);
+  @include transition();
+  margin-bottom: $margin-medium;
+
+  &.dark {
+    background: $color-secondary-dark;
+    @include border($color-secondary-dark);
+    color: $font-color-white;
+  }
+
+  &:focus,
+  &:active {
+    @include border($color-primary);
+  }
+}
+
+textarea.an-form-control {
+  height: 120px;
+}

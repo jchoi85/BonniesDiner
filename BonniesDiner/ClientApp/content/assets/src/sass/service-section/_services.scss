@@ -1,0 +1,29 @@
+.an-services {
+  position: relative;
+
+}
+
+.an-service-single {
+  position: relative;
+  margin-bottom: $margin-base * 2;
+  background: lighten($color-content-bg, 4%);
+  padding: $padding-medium $padding-base;
+  @extend .text-center;
+
+  i {
+    font-size: $font-size-h1;
+    @include circle-icon-link;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+
+  h3 {
+    @extend .text-uppercase;
+    font-family: $font-family-secondary;
+    padding: $padding-small 0;
+  }
+}

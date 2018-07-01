@@ -1,0 +1,44 @@
+.an-footer-top {
+  position: relative;
+  padding-bottom: $padding-base * 2;
+  @include border-bottom($color-secondary-light);
+}
+
+.an-footer-category-list {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  font-size: 0;
+  @extend .list-inline;
+
+  li {
+    position: relative;
+    width: 25%;
+    padding-bottom: $padding-base;
+
+    @media (max-width: $screen-md) {
+      width: 33.33%;
+    }
+
+    @media (max-width: $screen-xs) {
+      width: 50%;
+    }
+    a {
+      color: $color-primary;
+      font-size: $font-size-base - 1;
+
+      i {
+        position: relative;
+        top: 1px;
+        font-size: $font-size-base + 2;
+        padding-right: $padding-small - 2;
+
+      }
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+}
+

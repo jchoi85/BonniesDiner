@@ -1,0 +1,40 @@
+.an-footer-bottom {
+  position: relative;
+  padding-top: $padding-base * 3;
+}
+
+.an-logo {
+  @include navbar-brand();
+  padding: 0;
+  color: $color-primary;
+  height: auto;
+  line-height: inherit;
+  padding-bottom: $padding-base;
+
+}
+
+.an-widget {
+  position: relative;
+  padding-bottom: $padding-base * 2;
+
+  &.newsletter {
+    .an-small-title {
+      margin-bottom: $margin-base + 10;
+    }
+  }
+
+  img {
+    width: $logo-width;
+    margin-bottom: $margin-base * 3 - 5;
+  }
+  .copyrights {
+    color: lighten($color-secondary, 15%);
+    line-height: $line-height-h4;
+  }
+
+  p {
+    color: $font-color-white;
+    margin-bottom: 0;
+    line-height: $line-height-h4;
+  }
+}

@@ -1,0 +1,74 @@
+.an-pricing-table-single {
+  position: relative;
+  width: 100%;
+  background: lighten($color-content-bg, 4%);
+  margin-bottom: $margin-large;
+  @include border-radius($border-radius);
+
+  &.standard {
+    .price-header {
+      .plan-price {
+        color: $color-category-pets;
+      }
+    }
+  }
+
+  &.plan-gold {
+    .price-header {
+      .plan-price {
+        color: $color-category-jobs;
+      }
+    }
+  }
+
+
+  &.plan-plutinum {
+    .price-header {
+      .plan-price {
+        color: $color-category-hotels;
+      }
+    }
+  }
+
+  .price-header {
+    position: relative;
+    padding: $padding-medium;
+    @extend .text-center;
+    @include border-bottom($font-color-extra-light);
+
+    .plan-name {
+      @extend .text-uppercase;
+      margin-top: 0;
+    }
+    .plan-price {
+      color: $color-primary;
+      span {
+        font-size: $font-size-base - 1;
+        position: relative;
+        top: -15px;
+        padding-right: $padding-small - 5;
+        color: $font-color-lighter;
+      }
+      small {
+        font-size: $font-size-base;
+        color: $font-color-lighter;
+      }
+    }
+  }
+
+  .feature-lists {
+    @extend .list-unstyled;
+    padding: $padding-base;
+    @extend .text-center;
+
+    li {
+      padding: $padding-small - 5 0;
+      color: darken($font-color-light, 10%);
+    }
+  }
+
+  .price-footer {
+    padding: $padding-medium;
+    @include border-top($font-color-extra-light);
+  }
+}
