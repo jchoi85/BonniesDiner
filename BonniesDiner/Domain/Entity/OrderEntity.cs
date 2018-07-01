@@ -9,8 +9,8 @@ namespace BonniesDiner.Domain.Entity
         public List<OrderLineItemEntity> LineItems { get; protected set; }
         public decimal OrderTotal { get; protected set; }
         public DateTime StatusNew { get; protected set; }
-        public DateTime StatusFulfilled { get; protected set; }
-        public DateTime StatusCancelled { get; protected set; }
+        public Nullable<DateTime>  StatusFulfilled { get; protected set; }  
+        public Nullable<DateTime> StatusCancelled { get; protected set; }
 
         public OrderEntity(DateTime statusNew)
         {

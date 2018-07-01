@@ -30,7 +30,7 @@ namespace BonniesDiner.Controllers
         {
             return _dinerContext.Order.ToList();
         }
-        [HttpPost("[action]")]
+        [HttpGet("[action]/{orderId}")]
         public bool FulfillOrder(int orderId)
         {
             OrderEntity openOrder = _dinerContext.Order.FirstOrDefault(x => x.Id == orderId);
@@ -43,7 +43,7 @@ namespace BonniesDiner.Controllers
 
             return true;
         }
-        [HttpPost("[action]")]
+        [HttpGet("[action]/{orderId}")]
         public bool CancelOrder(int orderId)
         {
             OrderEntity openOrder = _dinerContext.Order.FirstOrDefault(x => x.Id == orderId);
