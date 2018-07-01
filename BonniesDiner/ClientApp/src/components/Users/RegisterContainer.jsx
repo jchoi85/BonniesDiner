@@ -28,7 +28,7 @@ export class RegisterContainer extends React.Component{
     }
 
     componentDidMount() {
-        //console.log(this.Auth.loggedIn())
+        this.Auth.loggedIn() ? browserHistory.push("menuPage") : ""
     }
   
      onFieldChange(fieldName, fieldValue) {
