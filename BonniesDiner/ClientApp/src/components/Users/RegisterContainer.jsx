@@ -36,17 +36,16 @@ export class RegisterContainer extends React.Component{
         this.setState(nextState);
     };
 
-     onCheck(name, checked) {
+	onCheck(name, checked) {
         this.setState({
-            loginEntity: {
-                ...this.state.loginEntity,
+            registerEntity: {
+				...this.state.registerEntity,
                 [name]: checked
             }
         })
     };
    
     onSave() {
-        console.log(this.state.registerEntity)
         let payload = this.state.registerEntity;
 
         fetch('/api/user/register', {
