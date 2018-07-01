@@ -1,5 +1,4 @@
 import * as React from "react";
-
 export class Layout extends React.Component {
     render() {
         return (
@@ -32,20 +31,6 @@ export class Layout extends React.Component {
                     </header>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div style={{ width: "100%", minHeight: "100vh", paddingTop : "50px" }}>
                         <div className="">
                             {this.props.children}
@@ -53,7 +38,7 @@ export class Layout extends React.Component {
                     </div>
 
 
-                    <footer className="an-footer">
+                    <footer className="an-footer" style={{ position: "fixed", height: "10px", width : "100%" }}>
 
                     </footer>
                 </div>

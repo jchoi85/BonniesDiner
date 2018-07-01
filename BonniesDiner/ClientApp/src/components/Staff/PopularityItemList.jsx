@@ -1,6 +1,6 @@
 ﻿import * as React from "react";
 
-export const ViewReportList = (props) => {
+export const PopularityItemList = (props) => {
     return (
         <React.Fragment>
             <div className="row">
@@ -14,18 +14,15 @@ export const ViewReportList = (props) => {
             </div>
             {props.dataItems.map(buildRow(props))}
         </React.Fragment>
-        )
+    )
 }
 
 const buildRow = (props) => (itm, ndx) => {
     return (<div className="container col-md-12" key={ndx}>
-        <br/>
+        <br />
         <div className="row">
-            <div className="col-md-4"><strong>{itm.typeName}</strong></div>
-            <div className="col-md-4">{itm.typeDescription}</div>
-            <div className="col-md-4">
-                "hello"
-            </div>
+            <div className="col-md-2"><strong>{itm.itemId}</strong></div>
+            <div className="col-md-2">{itm.itemQty}</div>
         </div>
         <hr />
     </div>);

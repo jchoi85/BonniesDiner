@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using BonniesDiner.Data;
 using BonniesDiner.Domain.Entity;
 using CsvHelper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BonniesDiner.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class OrderController : Controller
     {
@@ -30,7 +32,7 @@ namespace BonniesDiner.Controllers
         {
             return _dinerContext.Order.ToList();
         }
-        [HttpPost("[action]")]
+        [HttpGet("[action]/{orderId}")]
         public bool FulfillOrder(int orderId)
         {
             OrderEntity openOrder = _dinerContext.Order.FirstOrDefault(x => x.Id == orderId);
@@ -43,7 +45,7 @@ namespace BonniesDiner.Controllers
 
             return true;
         }
-        [HttpPost("[action]")]
+        [HttpGet("[action]/{orderId}")]
         public bool CancelOrder(int orderId)
         {
             OrderEntity openOrder = _dinerContext.Order.FirstOrDefault(x => x.Id == orderId);

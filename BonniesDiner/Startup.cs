@@ -1,8 +1,11 @@
 using System;
 using System.Linq;
+using System.Text;
 using BonniesDiner.Data;
 using BonniesDiner.Domain.Entity;
 using BonniesDiner.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +15,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BonniesDiner
 {
@@ -40,10 +44,21 @@ namespace BonniesDiner
                     x.UseSqlServer(Configuration.GetConnectionString("localDb"));
                 });
 
-            //services.AddDbContext<IdentityContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("localDb"),
-            //        b => b.MigrationsAssembly("BonniesDiner")));
-
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "localhost",
+                        ValidAudience = "localhost",
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes("secretkeysecretkeysecretkeysecretkey"))
+                    };
+                });
 
             services.AddSingleton<CreateMenuService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -76,6 +91,8 @@ namespace BonniesDiner
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
+
 
             app.UseMvc(routes =>
             {

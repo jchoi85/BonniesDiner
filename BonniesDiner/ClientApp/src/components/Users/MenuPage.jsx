@@ -33,8 +33,7 @@ export class MenuPage extends React.Component {
             ...this.state,
             menuEntity: {
                 ...this.state.menuEntity,
-                MenuItems: fieldName,
-                Quantity: fieldValue
+                [fieldName]: fieldValue
             }
         }
         this.setState(nextState);
@@ -75,7 +74,7 @@ export class MenuPage extends React.Component {
                 console.log("error");
             });
     }
-
+    
 
     postMenuItems() {
         let payload = this.state.menuEntity;
@@ -141,8 +140,8 @@ export class MenuPage extends React.Component {
             totalItems.push(this.state.itemsOrdered[i]);
         }
         return (
-            <div className="container" style={{ marginTop: "100px" }}>
-                <div className="col-md-8 col-md-3-offset">
+            <div className="container">
+                <div className="col-md-8 col-md-offset-3">
                     <h2 style={{ textAlign: "center" }}>Bonnie's Vegan Cuisine</h2> <br />
                     <div className="col-md-12 col-md-offset-2">
                         <div>
