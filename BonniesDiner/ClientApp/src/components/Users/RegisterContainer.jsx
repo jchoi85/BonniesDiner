@@ -38,7 +38,7 @@ export class RegisterContainer extends React.Component{
    
      onSave() {
       console.log("test")
-    }
+    };
 
      render() {
         return (
