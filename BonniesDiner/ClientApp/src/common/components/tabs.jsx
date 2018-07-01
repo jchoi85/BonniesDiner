@@ -62,7 +62,7 @@ export const Tab = (props) => {
                 onClick={(event) => {
                     event.preventDefault();
                     props.onClick(props.tabIndex);
-                }} href="#">
+                }} href="/">
                 <i className={`${props.iconClassName ? props.iconClassName : ''}`} /> {props.tabHeader}
             </a>
         </li>

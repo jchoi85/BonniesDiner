@@ -31,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\common\components\basicBanner.jsx" />
+    <None Remove="ClientApp\src\common\components\basicBanner.jsx" />
     <None Remove="ClientApp\src\common\components\button.jsx" />
     <None Remove="ClientApp\src\common\components\checkbox.jsx" />
     <None Remove="ClientApp\src\common\components\dropDownList.jsx" />

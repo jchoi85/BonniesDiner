@@ -1,5 +1,4 @@
 ﻿
-export * from "./basicBanner";
 export * from "./button";
 export * from "./input";
 export * from "./password";

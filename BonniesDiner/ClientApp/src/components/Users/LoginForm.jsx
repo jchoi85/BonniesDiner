@@ -1,10 +1,11 @@
 ﻿
 import * as React from "react";
-import { Link } from "react-router";
 import { Button, Input } from "../../common/components/index";
 
 export const LoginForm = (props) => {
     return (
+        <div className="col-md-offset-2" style={{}}>
+            <div >
         <form className="tg-loginform" method="post">
             <fieldset>
                 <div className="form-group" style={{ padding: "20px" }}>
@@ -39,7 +40,9 @@ export const LoginForm = (props) => {
                     <p>Don't have an account? <a href="/#home"><strong>Signup</strong></a></p>
                 </div>
             </fieldset>
-        </form>
+                </form>
+            </div>
+        </div>
     )
 };
 
