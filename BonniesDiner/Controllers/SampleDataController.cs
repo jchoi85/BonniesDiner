@@ -2,28 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BonniesDiner.Data;
+using BonniesDiner.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BonniesDiner.Controllers
 {
     [Route("api/[controller]")]
-    public class SampleDataController : Controller
+    public class MenuController : Controller
     {
-        private static string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly DinerContext _dinerContext;
 
-        [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> WeatherForecasts(int startDateIndex)
+        public MenuController(DinerContext dinerContext)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                DateFormatted = DateTime.Now.AddDays(index + startDateIndex).ToString("d"),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            });
+            _dinerContext = dinerContext;
+        }
+        [HttpGet("[action]")]
+        public IEnumerable<MenuEntity> GetMenuItems()
+        {
+            return _dinerContext.Menu.ToArray();
         }
 
         public class WeatherForecast
