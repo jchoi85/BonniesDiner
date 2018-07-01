@@ -19,9 +19,9 @@ export class Layout extends React.Component{
                                     <a className="navbar-brand" href="/">Hobbyist</a>
                                 </div>
                                 <div>
-                                    <ul style={{ color: "white" }}>
+                                    <ul className="list-inline" style={{ color: "white" }}>
                                         <li className="active"><a href="#home"><i className="ion-home"></i>Home</a></li>
-                                        <li className="active"><a href="/blogs"><i className="ion-document-text"></i>Blog</a></li>
+                                        <li className="active"><a href="/menupage"><i className="ion-document-text"></i>Menu</a></li>
                                         <li className="active"><a href="/login">Login</a></li>
                                     </ul>
                                 </div>
