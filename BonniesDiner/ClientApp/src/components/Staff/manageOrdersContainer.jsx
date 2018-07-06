@@ -48,7 +48,7 @@ export class ManageOrdersContainer extends React.Component {
     }
 
 
-    getOpenOrders() {
+    getOpenOrders = () => {
         this.Auth.fetch('/api/order/GetOpenOrders')
             .then(response => {
                 console.log(response)
